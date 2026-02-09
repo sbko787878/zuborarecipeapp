@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/style.css">
+    <title>レシピ詳細</title>
+</head>
+
+<body>
+<div class="detail-container">
+    <div class="recipe-card">
+
+        <!-- 画像 -->
+        <img th:src="${recipe.imagePath}" class="recipe-image">
+
+        <!-- タイトル -->
+        <h2 class="recipe-title" th:text="${recipe.name}"></h2>
+
+        <!-- 材料 -->
+        <h3 class="section-title">材料</h3>
+        <ul class="ingredients-list">
+            <li th:each="item : ${recipe.material}" th:text="${item}"></li>
+        </ul>
+
+       <!-- 作り方 -->
+        <h3 class="section-title">作り方</h3>
+        <ol class="steps-list">
+            <li th:each="step : ${recipe.description}" th:text="${step}"></li>
+        </ol>
+
+        <!-- 戻るボタン -->
+        <div class="back-btn-area">
+            <a href="/" class="back-btn">戻る</a>
+        </div>
+
+    </div>
+
+</div>
+</body>
+</html>

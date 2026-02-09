@@ -9,4 +9,6 @@ import com.example.zuborarecipeapp.entity.Recipe;
 @Mapper
 public interface RecipeMapper {
 	List<Recipe> getAllRecipes();
+
+	Recipe findRecipeById(int id);
 }

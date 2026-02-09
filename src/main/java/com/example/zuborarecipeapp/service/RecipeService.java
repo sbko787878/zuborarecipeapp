@@ -6,4 +6,6 @@ import com.example.zuborarecipeapp.entity.Recipe;
 
 public interface RecipeService {
 	List<Recipe> getAllRecipes();
+
+	Recipe findRecipeById(int id);
 }

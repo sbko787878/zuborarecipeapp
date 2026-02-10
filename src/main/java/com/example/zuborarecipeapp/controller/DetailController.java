@@ -16,12 +16,12 @@ import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("recipes")
+@RequestMapping
 public class DetailController {
 	final RecipeService recipeService;
 
-	@GetMapping("/name/{id}")
-	public String showDetailName(@PathVariable int id, Model m, HttpSession session) {
+	@GetMapping("/recipeList/{id}")
+	public String showDetailName(@PathVariable("id") int id, Model m, HttpSession session) {
 		List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipeList");
 
 		if (recipeList == null) {

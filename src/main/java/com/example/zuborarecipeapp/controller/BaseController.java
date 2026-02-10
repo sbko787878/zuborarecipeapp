@@ -28,8 +28,10 @@ public class BaseController {
 	@GetMapping
 	public String showRecipeList(HttpSession session) {
 		// Service経由でSQL実行し、Listを取得
+		if (session.getAttribute("recipeList") == null) {
 		List<Recipe> recipeList = recipeService.getAllRecipes();
 		session.setAttribute("recipeList", recipeList);
+		}
 		return "base";
 	}
 }

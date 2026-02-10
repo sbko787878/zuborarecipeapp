@@ -16,9 +16,9 @@
         <div class="swipe" th:each="recipe : ${recipeList}">
             <div class="recipe-card">
                 <!-- レシピ画像をタップしたら詳細へ -->
-                <a href="tea.jpg" th:href="@{'/recipeList/' + ${recipe.name}}">
+                <a href="tea.jpg" th:href="@{'/recipeList/' + ${recipe.id}}">
 
-                    <img src="tea.jpg" th:src="${recipe.imagePath}" class="recipe-image">
+                    <img src="${recipe.imagePath}" th:src="${recipe.imagePath}" class="recipe-image">
                 </a>
                 <!-- レシピ画像 -->
                 <!-- <img th:src="${recipe.imagePath}" class="recipe-image"> -->

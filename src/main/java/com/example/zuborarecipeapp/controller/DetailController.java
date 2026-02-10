@@ -20,7 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class DetailController {
 	final RecipeService recipeService;
 
-	@GetMapping("/name/{id}")
+	@GetMapping("/recipeList/{id}")
 	public String showDetailName(@PathVariable int id, Model m, HttpSession session) {
 		List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipeList");
 

@@ -14,5 +14,5 @@ public class Recipe {
 	private String description;
 	private String material;
 	private String imagePath;
-	private String iconPath;
+//	private String iconPath;
 }

@@ -13,42 +13,42 @@
 
 
 <body>
-	
-    <div class="swipe">
-        <!-- レシピをループ -->
-        <div class="swipe" th:each="recipe : ${session.recipeList}">
-            <div class="recipe-card">
-                <!-- レシピ画像をタップしたら詳細へ -->
-                <a th:href="@{'/recipeList/' + ${recipe.id}}">
 
-                    <img th:src="@{${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
-                </a>
-                <!-- レシピ画像 -->
-                <!-- <img th:src="${recipe.imagePath}" class="recipe-image"> -->
-                <!-- レシピ名 -->
-                <h2 class="recipe-title" th:text="${recipe.name}">
-                    期間限定TEA
-                </h2>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+
+            <!-- レシピをループ -->
+            <div class="swiper-slide" th:each="recipe : ${session.recipeList}">
+                <div class="recipe-card">
+                    <!-- レシピ画像をタップしたら詳細へ -->
+                    <a th:href="@{'/recipeList/' + ${recipe.id}}">
+                        <img th:src="@{${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
+                    </a>
+                    <!-- レシピ名 -->
+                    <h2 class="recipe-title" th:text="${recipe.name}">
+                        期間限定TEA
+                    </h2>
 
             </div>
         </div>
+        <div class="swiper-pagination"></div>
     </div>
     <script>
         var swiper = new Swiper(".mySwiper", {
-      direction: "vertical",
-      slidesPerView: 1,
-      spaceBetween: 30,
-      mousewheel: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-//          navigator:{
-//             nextEl: '.swiper-button-next',
-//             prevEl: '.swiper-button-prev',
-//         },
-// });
+            direction: "vertical",
+            slidesPerView: 1,
+            spaceBetween: 30,
+            // mousewheel: true,
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+        });
+        //          navigator:{
+        //             nextEl: '.swiper-button-next',
+        //             prevEl: '.swiper-button-prev',
+        //         },
+        // });
     </script>
 </body>
 

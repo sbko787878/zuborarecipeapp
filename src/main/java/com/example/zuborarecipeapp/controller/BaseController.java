@@ -10,7 +10,8 @@ import com.example.zuborarecipeapp.entity.Recipe;
 import com.example.zuborarecipeapp.service.RecipeService;
 
 import jakarta.servlet.http.HttpSession;
-
+import lombok.RequiredArgsConstructor;
+@RequiredArgsConstructor
 @Controller
 @RequestMapping("/")
 //@RequiredArgsController
@@ -19,10 +20,10 @@ public class BaseController {
 	//	Serviceを使うためのフィールド
 	private final RecipeService recipeService;
 
-	//	DI @Autowiredを1つなので省略しコンストラクタインジェクション実施
-	public BaseController(RecipeService recipeService) {
-		this.recipeService = recipeService;
-	}
+	//	DI @Autowiredを1つなので省略しコンストラクタインジェクション実施 ※@RequiredArgsConstructorでLombokが自動生成
+//	public BaseController(RecipeService recipeService) {
+//		this.recipeService = recipeService;
+//	}
 
 	@GetMapping
 	public String showRecipeList(HttpSession session) {

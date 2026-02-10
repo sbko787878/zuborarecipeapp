@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/2.0.0/modern-normalize.min.css">
-    <link rel="stylesheet" href="css/style.css">
-
+    <link rel="stylesheet" href="../static/css/reset .css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <script src="../static/js/swiper-bundle.min.js" th:src="@{/js/swiper-bundle.min.js}"></script>
     <title>レシピ一覧</title>
 </head>
+
 
 <body>
     <div class="swipe">
@@ -24,12 +26,29 @@
                 <!-- <img th:src="${recipe.imagePath}" class="recipe-image"> -->
                 <!-- レシピ名 -->
                 <h2 class="recipe-title" th:text="${recipe.name}">
-                期間限定TEA
+                    期間限定TEA
                 </h2>
 
             </div>
         </div>
     </div>
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+      direction: "vertical",
+      slidesPerView: 1,
+      spaceBetween: 30,
+      mousewheel: true,
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+    });
+//          navigator:{
+//             nextEl: '.swiper-button-next',
+//             prevEl: '.swiper-button-prev',
+//         },
+// });
+    </script>
 </body>
 
 </html>

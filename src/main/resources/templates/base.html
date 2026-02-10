@@ -13,14 +13,15 @@
 
 
 <body>
+	
     <div class="swipe">
         <!-- レシピをループ -->
-        <div class="swipe" th:each="recipe : ${recipeList}">
+        <div class="swipe" th:each="recipe : ${session.recipeList}">
             <div class="recipe-card">
                 <!-- レシピ画像をタップしたら詳細へ -->
-                <a href="tea.jpg" th:href="@{'/recipeList/' + ${recipe.name}}">
+                <a th:href="@{'/recipeList/' + ${recipe.id}}">
 
-                    <img src="tea.jpg" th:src="${recipe.imagePath}" class="recipe-image">
+                    <img th:src="@{${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
                 </a>
                 <!-- レシピ画像 -->
                 <!-- <img th:src="${recipe.imagePath}" class="recipe-image"> -->

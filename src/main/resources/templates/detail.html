@@ -14,22 +14,16 @@
     <div class="recipe-card">
 
         <!-- 画像 -->
-        <img th:src="${recipe.imagePath}" class="recipe-image">
+        <img th:src="@{${detailRecipe.imagePath}}" class="recipe-image">
 
         <!-- タイトル -->
-        <h2 class="recipe-title" th:text="${recipe.name}"></h2>
+        <h2 class="recipe-title" th:text="${detailRecipe.name}"></h2>
 
         <!-- 材料 -->
-        <h3 class="section-title">材料</h3>
-        <ul class="material-list">
-            <li th:each="item : ${recipe.material}" th:text="${item}"></li>
-        </ul>
+        <h3 class="material-title" th:text="${detailRecipe.material}"></h3>
 
        <!-- 作り方 -->
-        <h3 class="section-title">作り方</h3>
-        <ol class="steps-list">
-            <li th:each="step : ${recipe.description}" th:text="${step}"></li>
-        </ol>
+        <h3 class="section-title" th:text="${detailRecipe.description}"></h3>
 
         <!-- 戻るボタン -->
         <div class="back-btn-area">

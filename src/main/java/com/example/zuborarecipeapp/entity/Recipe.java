@@ -1,5 +1,7 @@
 package com.example.zuborarecipeapp.entity;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +16,6 @@ public class Recipe {
 	private String description;
 	private String material;
 	private String imagePath;
-//	private String iconPath;
+	private String iconPath;
+	private List<String> iconList;
 }

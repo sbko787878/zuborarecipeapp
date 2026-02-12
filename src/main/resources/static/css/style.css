@@ -1,14 +1,16 @@
 body {
     margin: 0;
+    padding: 0;
     background: #f7f7f7;
     font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 
-
-
-/* /base.html の中央寄せコンテナ */ */
-.base-container {
+/* /base.html の中央寄せコンテナ */
+ .base-container {
     padding: 20px 0;
     display: flex;
     justify-content: center;
@@ -18,12 +20,14 @@ body {
 .recipe-card {
     background: #fff;
     width: 90%;
+    height: 100%;
     max-width: 420px;
     padding: 20px;
     border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
 }
+
 /* レシピ画像 */
 .recipe-image {
     width: 100%;
@@ -78,4 +82,63 @@ body {
     color: #333;
     font-weight: 600;
 }
+
+/* スプラッシュ画面全体 */
+#splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 2.5s ease forwards;
+    animation-delay: 2.0s;
+    /* 表示してから消えるまでの時間 */
+}
+
+/* アプリ名の文字 */
+.splash-title {
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
+    background-clip: text;
+    -webkit-background-clip: text; /* Safari対策 */
+    color: transparent; /* 文字色を透明にする */
+    font-family: 'Zen Kaku Gothic New', sans-serif;
+
+}
+
+/* ふわっと表示 */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ふわっと消える */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
 

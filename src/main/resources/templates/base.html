@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
     <script src="../static/js/swiper-bundle.min.js" th:src="@{/js/swiper-bundle.min.js}"></script>
@@ -13,7 +14,9 @@
 
 
 <body>
-
+    <div id="splash">
+        <h1 class="splash-title">HP5で出来る<br>レンチンごはん</h1>
+    </div>
     <div class="swiper mySwiper">
         <div class="swiper-wrapper">
 
@@ -26,7 +29,9 @@
 <!--                    <img th:src="@{'/data/icon/'+${recipe.iconPath}}" class="recipe-icon" alt="レシピアイコン">-->
                     </a>
                     <!-- レシピ名 -->
-                    <h2 class="recipe-title" th:text="${recipe.name}">
+                    <!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
+                    <h2 class="recipe-title" th:utext="${recipe.name}">
+                        <!-- <h1 th:utext="${recipe.formattedTitle}"></h1> -->
                         期間限定TEA
                     </h2>
                 </div>

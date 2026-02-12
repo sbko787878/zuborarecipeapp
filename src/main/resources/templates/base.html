@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/reset .css" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
     <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
     <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
     <script src="../static/js/swiper-bundle.min.js" th:src="@{/js/swiper-bundle.min.js}"></script>
@@ -22,7 +22,8 @@
                 <div class="recipe-card">
                     <!-- レシピ画像をタップしたら詳細へ -->
                     <a th:href="@{'/recipeList/' + ${recipe.id}}">
-                        <img th:src="@{${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
+                        <img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
+<!--                    <img th:src="@{'/data/icon/'+${recipe.iconPath}}" class="recipe-icon" alt="レシピアイコン">-->
                     </a>
                     <!-- レシピ名 -->
                     <h2 class="recipe-title" th:text="${recipe.name}">

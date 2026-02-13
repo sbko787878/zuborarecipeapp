@@ -2,60 +2,63 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <script src="../static/js/swiper-bundle.min.js" th:src="@{/js/swiper-bundle.min.js}"></script>
-    <title>レシピ一覧</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
+	<link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+	<script src="../static/js/swiper-bundle.min.js" th:src="@{/js/swiper-bundle.min.js}"></script>
+	<title>レシピ一覧</title>
 </head>
 
 
 <body>
-    <div id="splash">
-        <h1 class="splash-title">HP5で出来る<br>レンチンごはん</h1>
-    </div>
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
+	<div id="splash">
+		<h1 class="splash-title">HP5で出来る<br>レンチンごはん</h1>
+	</div>
+	<div class="swiper mySwiper">
+		<div class="swiper-wrapper">
 
-            <!-- レシピをループ -->
-            <div class="swiper-slide" th:each="recipe : ${session.recipeList}">
-                <div class="recipe-card">
-                    <!-- レシピ画像をタップしたら詳細へ -->
-                    <a th:href="@{'/recipeList/' + ${recipe.id}}">
-                        <img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
-<!-- <img th:src="@{'/data/icon/'+${recipe.iconPath}}" class="recipe-icon" alt="レシピアイコン">-->
-                    </a>
-                    <!-- レシピ名 -->
-                    <!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
-                    <h2 class="recipe-title" th:utext="${recipe.name}">
-                        <!-- <h1 th:utext="${recipe.formattedTitle}"></h1> -->
-                        期間限定TEA
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <script>
-        var swiper = new Swiper(".mySwiper", {
-            direction: "vertical",
-            slidesPerView: 1,
-            spaceBetween: 30,
-            // mousewheel: true,
-            pagination: {
-                el: ".swiper-pagination",
-                clickable: true,
-            },
-        });
-        //          navigator:{
-        //             nextEl: '.swiper-button-next',
-        //             prevEl: '.swiper-button-prev',
-        //         },
-        // });
-    </script>
+			<!-- レシピをループ -->
+			<div class="swiper-slide" th:each="recipe : ${session.recipeList}">
+				<div class="recipe-card">
+					<!-- レシピ画像をタップしたら詳細へ -->
+					<a th:href="@{'/recipeList/' + ${recipe.id}}">
+						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
+					</a>
+					<div class="recipe-iconList">
+						<img th:each="iconName : ${recipe.iconList}" th:src="@{'/data/icon/'+${iconName}}"
+							class="recipe-icon" alt="レシピアイコン">
+					</div>
+					<!-- レシピ名 -->
+					<!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
+					<h2 class="recipe-title" th:utext="${recipe.name}">
+						<!-- <h1 th:utext="${recipe.formattedTitle}"></h1> -->
+						期間限定TEA
+					</h2>
+				</div>
+			</div>
+		</div>
+		<div class="swiper-pagination"></div>
+	</div>
+	<script>
+		var swiper = new Swiper(".mySwiper", {
+			direction: "vertical",
+			slidesPerView: 1,
+			spaceBetween: 30,
+			// mousewheel: true,
+			pagination: {
+				el: ".swiper-pagination",
+				clickable: true,
+			},
+		});
+		//          navigator:{
+		//             nextEl: '.swiper-button-next',
+		//             prevEl: '.swiper-button-prev',
+		//         },
+		// });
+	</script>
 </body>
 
 </html>

@@ -2,38 +2,44 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
-    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
-    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
-    <title>レシピ詳細</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="../static/css/reset.css" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+	<link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="../static/css/swiper-bundle.min.css" th:href="@{/css/swiper-bundle.min.css}">
+	<title>レシピ詳細</title>
 </head>
 
 <body>
-<div class="detail-container">
-    <div class="recipe-card">
+	<div class="detail-container">
+		<div class="recipe-card">
 
-        <!-- 画像 -->
-        <img th:src="@{'/data/image/'+${detailRecipe.imagePath}}" class="recipe-image">
+			<!-- 画像 -->
+			<img th:src="@{'/data/image/'+${detailRecipe.imagePath}}" class="recipe-image">
+			<!-- アイコン -->
+			<div class="detailRecipe-iconList">
+				<img th:each="iconName : ${detailRecipe.iconList}" th:src="@{'/data/icon/'+${iconName}}" class="recipe-icon"
+					alt="レシピアイコン">
+			</div>
 
-        <!-- タイトル -->
-        <h2 class="recipe-title" th:text="${detailRecipe.name}"></h2>
+			<!-- タイトル -->
+			<h2 class="recipe-title" th:text="${detailRecipe.name}"></h2>
 
-        <!-- 材料 -->
-        <h3 class="material-title" th:text="${detailRecipe.material}"></h3>
+			<!-- 材料 -->
+			<h3 class="material-title" th:text="${detailRecipe.material}"></h3>
 
-       <!-- 作り方 -->
-        <h3 class="section-title" th:text="${detailRecipe.description}"></h3>
+			<!-- 作り方 -->
+			<h3 class="section-title" th:text="${detailRecipe.description}"></h3>
 
-        <!-- 戻るボタン -->
-        <div class="back-btn-area">
-            <a th:href="@{/}" class="back-btn">戻る</a>
-        </div>
+			<!-- 戻るボタン -->
+			<div class="back-btn-area">
+				<a th:href="@{/}" class="back-btn">戻る</a>
+			</div>
 
-    </div>
+		</div>
 
-</div>
+	</div>
 </body>
+
 </html>

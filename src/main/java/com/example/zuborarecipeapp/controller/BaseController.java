@@ -31,9 +31,6 @@ public class BaseController {
 		if (session.getAttribute("recipeList") == null) {
 		List<Recipe> recipeList = recipeService.getAllRecipes();
 		session.setAttribute("recipeList", recipeList);
-		recipeService.breakBySpace(String name) {
-	        return name.replace(" ", "<br>");
-	    }
 		}
 		return "base";
 	}

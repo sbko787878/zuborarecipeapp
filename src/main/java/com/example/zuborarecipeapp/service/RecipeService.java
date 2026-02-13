@@ -8,7 +8,5 @@ public interface RecipeService {
 	List<Recipe> getAllRecipes();
 
 	Recipe findRecipeById(int id);
-	
-	String breakBySpace(String title);
 
 }

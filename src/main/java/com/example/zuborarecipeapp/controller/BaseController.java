@@ -19,7 +19,7 @@ public class BaseController {
 
 	//	Serviceを使うためのフィールド
 	private final RecipeService recipeService;
-
+	
 	//	DI @Autowiredを1つなので省略しコンストラクタインジェクション実施 ※@RequiredArgsConstructorでLombokが自動生成
 //	public BaseController(RecipeService recipeService) {
 //		this.recipeService = recipeService;
@@ -31,6 +31,9 @@ public class BaseController {
 		if (session.getAttribute("recipeList") == null) {
 		List<Recipe> recipeList = recipeService.getAllRecipes();
 		session.setAttribute("recipeList", recipeList);
+		recipeService.breakBySpace(String name) {
+	        return name.replace(" ", "<br>");
+	    }
 		}
 		return "base";
 	}

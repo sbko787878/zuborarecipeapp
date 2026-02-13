@@ -14,6 +14,11 @@ import lombok.RequiredArgsConstructor;
 public class RecipeServiceImpl implements RecipeService {
 
 	private final RecipeMapper recipeMapper;
+	
+	@Override
+	public String breakBySpace(String title) {
+        return title.replace(" ", "<br>");
+    }
 
 	@Override
 	public List<Recipe> getAllRecipes() {

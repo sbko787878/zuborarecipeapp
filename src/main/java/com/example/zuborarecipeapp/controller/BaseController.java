@@ -11,6 +11,7 @@ import com.example.zuborarecipeapp.service.RecipeService;
 
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/")
@@ -30,8 +31,12 @@ public class BaseController {
 		// Service経由でSQL実行し、Listを取得
 		if (session.getAttribute("recipeList") == null) {
 		List<Recipe> recipeList = recipeService.getAllRecipes();
+		//ListでiconPathを取得できてるか確認
+		System.out.println(recipeList.get(0).getIconList());
 		session.setAttribute("recipeList", recipeList);
+		
 		}
+		
 		return "base";
 	}
 }

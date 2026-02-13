@@ -34,6 +34,8 @@ public class DetailController {
 				// リスト内の各レシピのIDと、URLのIDを比較
 				if (recipe.getId() == id) {
 					detailRecipe = recipe; // 一致したら変数に保存
+					//ListでiconPathを取得できてるか確認
+					System.out.println(recipe.getIconList());
 					break; // 見つかったのでループを抜ける
 				}
 			}
@@ -42,7 +44,6 @@ public class DetailController {
 			if (detailRecipe == null) {
 				return "redirect:/"; // または "error" ページなど
 			}
-			
 			
 			m.addAttribute("detailRecipe", detailRecipe);
 			return "detail";

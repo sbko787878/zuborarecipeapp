@@ -25,7 +25,7 @@ public class RecipeServiceImpl implements RecipeService {
             // 1. スペースを<br>に変換して上書き
 //        	breakBySpace(recipe);
             // 2. iconPath(文字列)をiconList(List)に変換
-//            setupIconList(recipe);
+            setupIconList(recipe);
         }
 		return recipeList;
 		
@@ -37,7 +37,7 @@ public class RecipeServiceImpl implements RecipeService {
 		if (recipe != null) {
 			//DB側で改行するよう改善中
 //			breakBySpace(recipe);
-//			setupIconList(recipe);
+			setupIconList(recipe);
 		}
 		return recipe;
 	}

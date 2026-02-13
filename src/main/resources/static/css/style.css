@@ -30,11 +30,12 @@ body {
 
 /* レシピ画像 */
 .recipe-image {
-    width: 100vw;
-    /* height: ; */
+    width: 90vw;
+    height: 100vw;
     object-fit: cover;
     border-radius: 16px;
 }
+
 
 /* タイトル */
 .recipe-title {
@@ -140,5 +141,13 @@ body {
         visibility: hidden;
     }
 }
+
+.recipe-title,
+.material-list,
+.steps-list {
+    white-space: pre-wrap;
+}
+
+
 
 

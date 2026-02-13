@@ -11,4 +11,6 @@ public interface RecipeMapper {
 	List<Recipe> getAllRecipes();
 
 	Recipe findRecipeById(int id);
+	
+	List<Recipe> findByCategory(String category);
 }

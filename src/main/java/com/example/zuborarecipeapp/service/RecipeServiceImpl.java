@@ -42,6 +42,18 @@ public class RecipeServiceImpl implements RecipeService {
 		return recipe;
 	}
 	
+	@Override
+	public List<Recipe> findByCategory(String category) {
+	    // 1. Mapperを使ってDBからカテゴリー一致するものを取得
+	    List<Recipe> recipeList = recipeMapper.findByCategory(category);
+	    
+	    // 2. アイコンを表示できるようにリスト化処理を通す
+	    for (Recipe recipe : recipeList) {
+	        setupIconList(recipe);
+	    }
+	    return recipeList;
+	}
+	
 	// 3. 内部処理（Private）
     // DB側で改行改善中
     private void breakBySpace(Recipe recipe) {
@@ -55,4 +67,6 @@ public class RecipeServiceImpl implements RecipeService {
             recipe.setIconList(new java.util.ArrayList<>());
         }
     }
+
+	
 }

@@ -18,4 +18,5 @@ public class Recipe {
 	private String imagePath;
 	private String iconPath;
 	private List<String> iconList;
+	private String category;
 }

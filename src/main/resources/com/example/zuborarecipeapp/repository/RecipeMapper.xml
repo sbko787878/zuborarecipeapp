@@ -4,15 +4,21 @@
 	namespace="com.example.zuborarecipeapp.repository.RecipeMapper">
 	<select id="getAllRecipes"
 		resultType="com.example.zuborarecipeapp.entity.Recipe">
-		SELECT r.id,r.name,r.description,r.material,r.image_path as imagePath,GROUP_CONCAT(i.icon_path SEPARATOR ',') AS iconPath from
-		zubora_recipes r
-        LEFT JOIN icons i ON r.material LIKE CONCAT('%', i.icon_name, '%')
-        GROUP BY r.id
+		select r.id,r.name,r.description,r.material,r.category,r.image_path as imagePath,
+		group_concat(i.icon_path separator ',') as iconPath from zubora_recipes r
+        left join icons i ON r.material like concat('%', i.icon_name, '%')
+        group by r.id
 	</select>
 	<select id="findRecipeById"
 		resultType="com.example.zuborarecipeapp.entity.Recipe">
-		SELECT r.id,r.name,r.description,r.material,r.image_path as imagePath,GROUP_CONCAT(i.icon_path SEPARATOR ',') AS iconPath from
-		zubora_recipes r
-        LEFT JOIN icons i ON r.material LIKE CONCAT('%', i.icon_name, '%') where r.id=#{id} GROUP BY r.id
+		select r.id,r.name,r.description,r.material,r.category,r.image_path as imagePath,
+		group_concat(i.icon_path separator ',') as iconPath from zubora_recipes r
+        left join icons i on r.material like concat('%', i.icon_name, '%') where r.id=#{id} group by r.id
+	</select>
+	<select id="findByCategory" resultType="com.example.zuborarecipeapp.entity.Recipe">
+    	select r.id,r.name,r.description,r.material,r.category,r.image_path as imagePath,
+        group_concat(i.icon_path separator ',') as iconPath from zubora_recipes r
+    	left join icons i on r.material like concat('%', i.icon_name, '%') where r.category = #{category}
+    	group by r.id
 	</select>
 </mapper>

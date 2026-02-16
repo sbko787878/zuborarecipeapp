@@ -19,8 +19,8 @@
 			<img th:src="@{'/data/image/'+${detailRecipe.imagePath}}" class="recipe-image">
 			<!-- アイコン -->
 			<div class="detailRecipe-iconList">
-				<img th:each="iconName : ${detailRecipe.iconList}" th:src="@{'/data/icon/'+${iconName}}" class="recipe-icon"
-					alt="レシピアイコン">
+				<img th:each="icon : ${detailRecipe.iconList}" th:src="@{'/data/icon/'+${icon.iconPath}}"
+					th:alt="${icon.iconName}" class="recipe-icon">
 			</div>
 
 			<!-- タイトル -->

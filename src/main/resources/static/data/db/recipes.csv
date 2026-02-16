@@ -1,4 +1,4 @@
-id,name,description,material,image_Path,icon_Path,category
+id,name,description,material,image_Path,icon,category
 1,"レンチン一回
 簡単オムライス","1.レンチンOKな容器に☆の材料を入れ、よく混ぜる
 2.ピザ用チーズをお好みでかける
@@ -8,7 +8,7 @@ id,name,description,material,image_Path,icon_Path,category
 コク旨バタぽんパスタ","1.レンチンＯＫな容器にパスタ、お水を加える
 2.パスタの袋に記載された加熱時間+2分レンチン
 3.ゆで汁大さじ1程度残した状態で☆を入れる
-4.よく混ぜたら完成。",・パスタ100ｇ・水250ｍｌ☆有塩バター　15ｇ☆ツナ缶　1缶(オイルは切る)☆ニンニクチューブ　2-3cm☆ポン酢　大さじ2☆刻みネギ　好きなだけ☆ゴマ　好きなだけ,2.png,gohan.png tunakan.png chi-zu.png tamago.png gyuunyuu.png,①
+4.よく混ぜたら完成。",・パスタ100ｇ・水250ｍｌ☆有塩バター　15ｇ☆ツナ缶　1缶(オイルは切る)☆ニンニクチューブ　2-3cm☆ポン酢　大さじ2☆刻みネギ　好きなだけ☆ゴマ　好きなだけ,2.png,pasta.png bata-.png tunakan.png ninnniku.png negi.png goma.png,①
 3,"レンチン1回
 和風ツナマヨパスタ","1.レンチンＯＫな容器に☆の材料を入れる
 2.パスタの湯で時間+2分レンチン

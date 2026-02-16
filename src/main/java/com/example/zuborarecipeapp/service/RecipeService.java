@@ -10,5 +10,7 @@ public interface RecipeService {
 	Recipe findRecipeById(int id);
 	
 	List<Recipe> findByCategory(String category);
+	
+	List<Recipe> searchByFilter(String category, String iconName);
 
 }

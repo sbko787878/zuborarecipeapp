@@ -32,4 +32,9 @@ public class RecipeServiceImpl implements RecipeService {
 	    List<Recipe> recipeList = recipeMapper.findByCategory(category);
 	    return recipeList;
 	}
+	
+	@Override
+	public List<Recipe> searchByFilter(String category, String iconName) {
+	    return recipeMapper.searchByFilter(category, iconName);
+	}
 }

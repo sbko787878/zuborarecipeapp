@@ -15,7 +15,6 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 @RequestMapping("/")
-//@RequiredArgsController
 public class BaseController {
 
 	//	Serviceを使うためのフィールド

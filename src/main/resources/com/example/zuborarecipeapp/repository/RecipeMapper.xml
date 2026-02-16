@@ -21,29 +21,44 @@
 
 	<select id="getAllRecipes" resultMap="recipeMap">
 		select
-		r.id as r_id, r.name,r.description, r.material, r.image_Path, r.category,
-		i.id as i_id,i.icon_name, i.icon_path
-		from zubora_recipes r left join icons i 
+		r.id as r_id,
+		r.name,r.description, r.material, r.image_Path, r.category,
+		i.id as
+		i_id,i.icon_name, i.icon_path
+		from zubora_recipes r left join icons i
 		on r.material like concat('%', i.icon_name, '%')
 		order by r.id
 	</select>
 
 	<select id="findRecipeById" resultMap="recipeMap">
 		select
-		r.id as r_id,r.name, r.description, r.material, r.image_Path, r.category,
-		i.id as i_id, i.icon_name, i.icon_path 
+		r.id as r_id,r.name,
+		r.description, r.material, r.image_Path, r.category,
+		i.id as i_id,
+		i.icon_name, i.icon_path
 		from zubora_recipes r left join icons i
-		on r.material like concat('%', i.icon_name, '%')
-		where r.id=#{id} 
+		on r.material like concat('%',i.icon_name, '%')
+		where r.id=#{id}
 	</select>
 
 	<select id="findByCategory" resultMap="recipeMap">
-		select 
+		select
 		r.id as r_id, r.name, r.description, r.material, r.image_Path, r.category,
-		i.id as i_id, i.icon_name, i.icon_path 
+		i.id as i_id, i.icon_name, i.icon_path
 		from zubora_recipes r left join icons i
+		on r.material like concat('%',i.icon_name, '%')
+		where r.category = #{category}
+		order by r.id
+	</select>
+
+	<select id="searchByFilter" resultMap="recipeMap">
+		SELECT
+		r.id as r_id, r.name, r.description, r.material, r.image_Path, r.category,
+		i.id as i_id, i.icon_name, i.icon_path
+		from zubora_recipes r LEFT JOIN icons i 
 		on r.material like concat('%', i.icon_name, '%')
-		where r.category = #{category} 
+		where r.category = #{category}
+		and r.material like concat('%', #{iconName}, '%')
 		order by r.id
 	</select>
 

@@ -28,8 +28,11 @@
 						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
 					</a>
 					<div class="recipe-iconList">
-						<img th:each="icon : ${recipe.iconList}" th:src="@{'/data/icon/'+${icon.iconPath}}"
-							th:alt="${icon.iconName}" class="recipe-icon">
+						<a th:each="icon : ${recipe.iconList}"
+						th:href="@{/search(category=${recipe.category}, iconName=${icon.iconName})}"> 	
+						<img  th:src="@{'/data/icon/'+${icon.iconPath}}"
+							th:title="${icon.iconName}" th:alt="${icon.iconName}" class="recipe-icon">
+						</a>
 					</div>
 					<!-- レシピ名 -->
 					<!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->

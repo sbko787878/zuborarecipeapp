@@ -145,7 +145,7 @@ body {
 
 .recipe-title,
 .material-list,
-.steps-list {
+.section-title{
     white-space: pre-wrap;
 }
 

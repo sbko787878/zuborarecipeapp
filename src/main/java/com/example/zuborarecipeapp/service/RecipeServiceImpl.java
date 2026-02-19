@@ -18,29 +18,50 @@ public class RecipeServiceImpl implements RecipeService {
 
 	@Override
 	public List<Recipe> getAllRecipes() {
-		List<Recipe> recipeList=recipeMapper.getAllRecipes();
+		List<Recipe> recipeList = recipeMapper.getAllRecipes();
 		return recipeList;
 	}
 
 	@Override
 	public Recipe findRecipeById(int id) {
-		Recipe recipe=recipeMapper.findRecipeById(id);
+		Recipe recipe = recipeMapper.findRecipeById(id);
 		return recipe;
 	}
-	
+
 	@Override
 	public List<Recipe> findByCategory(String category) {
-	    List<Recipe> recipeList = recipeMapper.findByCategory(category);
-	    return recipeList;
+		List<Recipe> recipeList = recipeMapper.findByCategory(category);
+		return recipeList;
 	}
-	
+
 	@Override
 	public List<Recipe> searchByFilter(String category, List<String> iconName) {
-	    return recipeMapper.searchByFilter(category, iconName);
+		return recipeMapper.searchByFilter(category, iconName);
 	}
-	
+
 	@Override
 	public List<Icon> getAllIcons() {
-	    return recipeMapper.getAllIcons();
+		return recipeMapper.getAllIcons();
+	}
+
+	//	管理者ページ
+
+	@Override
+	public void insertRecipe(Recipe recipe) {
+		// IDがnullなら新規、あれば更新
+		if (recipe.getId() == null) {
+			recipeMapper.insert(recipe);
+		}
+	}
+
+	@Override
+	public void updateRecipe(Recipe recipe) {
+		recipeMapper.update(recipe);
+
+	}
+
+	@Override
+	public void deleteRecipe(int id) {
+		recipeMapper.delete(id);
 	}
 }

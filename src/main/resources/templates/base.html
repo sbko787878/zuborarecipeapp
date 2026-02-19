@@ -32,17 +32,16 @@
 			<div id="materialWrapper" style="display: none; margin-top: 15px;">
 				<p style="font-size: 0.8rem; color: #666;">材料を選んでチェックをタップ！</p>
 				<div class="material-grid">
-					<label th:each="icon : ${allIcons}" class="icon-checkbox-label"
-						th:attr="data-category=${icon.targetCategory}"> <input type="checkbox" name="iconNames"
-							th:value="${icon.iconName}" class="hidden-checkbox">
-						<img th:src="@{'/data/icon/' + ${icon.iconPath}}" class="selectable-icon">
+					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label" style="display: none;">
+						<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"
+							onchange="updateRecipeFilter()"> <img th:src="@{'/data/icon/' + ${icon.iconPath}}"
+							class="selectable-icon">
 					</label>
 				</div>
 			</div>
 
-			<div class="search-actions">
+			<div class="search-actions" style="display:none;">
 				<button type="submit" class="action-btn-check">✔</button>
-				<a th:href="@{/}" class="action-btn-reset">✖</a>
 			</div>
 		</form>
 	</div>
@@ -51,7 +50,8 @@
 		<div class="swiper-wrapper">
 
 			<!-- レシピをループ -->
-			<div class="swiper-slide" th:each="recipe : ${session.recipeList}">
+			<div class="swiper-slide" th:each="recipe : ${session.allRecipeList}"
+				th:attr="data-category=${recipe.category}, data-icons=${recipe.material}">
 				<div class="recipe-card">
 					<!-- レシピ画像をタップしたら詳細へ -->
 					<a th:href="@{'/recipeList/' + ${recipe.id}}">
@@ -90,25 +90,76 @@
 		//         },
 		// });
 
+		let currentCategory = ""; // 現在選ばれている大分類を保持
+
+		// 1. 大分類ボタンを押した時
 		function filterIcons(selectedCategory) {
+			currentCategory = selectedCategory;
+
+			// 全ての材料チェックボックスをリセット（大分類を切り替えた時は全表示からスタートするため）
+			const checkboxes = document.querySelectorAll('.hidden-checkbox');
+			checkboxes.forEach(cb => cb.checked = false);
+
 			const wrapper = document.getElementById('materialWrapper');
 			wrapper.style.display = 'block';
 
+			const slides = document.querySelectorAll('.swiper-slide');
 			const iconLabels = document.querySelectorAll('.icon-checkbox-label');
+			let activeMaterialsInCat = "";
 
+			// そのカテゴリーに属するレシピの材料を収集
+			slides.forEach(slide => {
+				if (slide.getAttribute('data-category') === currentCategory) {
+					activeMaterialsInCat += slide.getAttribute('data-icons') + " ";
+				}
+			});
+
+			// 使える材料アイコンだけを表示
 			iconLabels.forEach(label => {
-				// アイコンのデータ属性(data-category)と選択されたカテゴリーを比較
-				// HTML側で th:attr="data-category=${icon.targetCategory}" としておく必要があります
-				const iconCat = label.getAttribute('data-category');
-
-				if (iconCat === selectedCategory) {
-					label.style.display = 'inline-block';
+				const iconName = label.querySelector('input').value;
+				if (activeMaterialsInCat.includes(iconName)) {
+					label.style.setProperty("display", "inline-block", "important");
 				} else {
 					label.style.display = 'none';
 				}
 			});
+
+			// レシピ表示を更新（大分類のみの状態で全レシピを表示）
+			updateRecipeFilter();
 		}
 
+		// 2. 材料アイコンをチェック/解除した時、および大分類切り替え時に呼ばれる
+		function updateRecipeFilter() {
+			const slides = document.querySelectorAll('.swiper-slide');
+
+			// 現在チェックされている材料の名前を取得
+			const checkedCheckboxes = document.querySelectorAll('.hidden-checkbox:checked');
+			const selectedMaterialNames = Array.from(checkedCheckboxes).map(cb => cb.value);
+
+			slides.forEach(slide => {
+				const recipeCat = slide.getAttribute('data-category');
+				const recipeMaterials = slide.getAttribute('data-icons');
+
+				// 条件A: 大分類が一致しているか
+				const categoryMatch = (recipeCat === currentCategory);
+
+				// 条件B: 選択した全ての材料がレシピに含まれているか (AND検索)
+				// もし1つもチェックしていなければ常にtrue（その大分類の全レシピを出す）
+				const materialMatch = selectedMaterialNames.every(name => recipeMaterials.includes(name));
+
+				if (categoryMatch && materialMatch) {
+					slide.style.display = 'block';
+				} else {
+					slide.style.display = 'none';
+				}
+			});
+
+			// Swiperの表示を更新して最初のスライドに戻す
+			if (typeof swiper !== 'undefined') {
+				swiper.update();
+				swiper.slideTo(0);
+			}
+		}
 	</script>
 </body>
 

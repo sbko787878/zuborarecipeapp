@@ -45,11 +45,15 @@ body {
 	transition: 0.3s;
 }
 
-/* カテゴリー選択時 */
+/* 選択された時のスタイル（例：枠線をつける） */
 .cat-radio:checked+.cat-btn {
-	background-color: #ff9900;
-	color: white;
 	border-color: #ff9900;
+	/* オレンジ色の枠線 */
+	background-color: rgba(255, 153, 0, 0.1);
+}
+
+.cat-btn img {
+	border-radius: 50%;
 }
 
 /* 材料アイコンのスタイル */
@@ -247,4 +251,74 @@ body {
 
 .icon-checkbox-label {
 	margin: 5px;
+}
+
+/* カテゴリーアイコンのスタイル */
+.category-icon {
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+}
+
+.cat-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+
+/* カテゴリーアイコン（大分類）選択時の色の変化 */
+.cat-radio:checked+.cat-btn .category-icon {
+	filter: brightness(0.2);
+	/* 大分類アイコンも選択時に濃くする場合 */
+	opacity: 1;
+}
+
+/* 材料アイコンと名前を縦に並べる */
+.icon-checkbox-label {
+	text-align: center;
+	cursor: pointer;
+}
+
+.icon-content {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 5px;
+	border-radius: 8px;
+	transition: background 0.3s;
+}
+
+.icon-name {
+	font-size: 0.7rem;
+	color: #333;
+	margin-top: 4px;
+	word-break: break-all;
+}
+
+/* 名前（ラベル）も選択時に太くする */
+.hidden-checkbox:checked+.icon-content .icon-name {
+	color: #000;
+	font-weight: bold;
+}
+
+/* 選択された（チェックが入った）状態のアイコン */
+.hidden-checkbox:checked+.icon-content .selectable-icon {
+	/* 1. モノクロにする 2. コントラストを最大にして線をハッキリさせる */
+	filter: grayscale(100%) contrast(200%) brightness(0.5);
+	opacity: 1;
+	transform: scale(1.1);
+}
+
+/* 未選択の状態：グレーで薄い */
+.selectable-icon {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+	filter: grayscale(100%) brightness(0.8);
+	/* 少し暗めのグレー */
+	opacity: 0.3;
+	/* さらに薄くして、未選択感を強調 */
+	transition: all 0.3s ease;
+	cursor: pointer;
 }

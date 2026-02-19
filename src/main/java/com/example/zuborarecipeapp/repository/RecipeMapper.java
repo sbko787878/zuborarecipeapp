@@ -19,4 +19,13 @@ public interface RecipeMapper {
 	List<Recipe> searchByFilter(@Param("category") String category, @Param("iconName") List<String> iconName);
 	
 	List<Icon> getAllIcons();
+	
+//	管理者ページ用のメソッド
+  
+    // 新規登録
+    void insert(Recipe recipe);
+    // 更新
+    void update(Recipe recipe);
+    // 削除
+    void delete(int id);
 }

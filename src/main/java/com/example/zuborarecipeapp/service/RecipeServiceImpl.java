@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.example.zuborarecipeapp.entity.Icon;
 import com.example.zuborarecipeapp.entity.Recipe;
 import com.example.zuborarecipeapp.repository.RecipeMapper;
 
@@ -34,7 +35,12 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 	
 	@Override
-	public List<Recipe> searchByFilter(String category, String iconName) {
+	public List<Recipe> searchByFilter(String category, List<String> iconName) {
 	    return recipeMapper.searchByFilter(category, iconName);
+	}
+	
+	@Override
+	public List<Icon> getAllIcons() {
+	    return recipeMapper.getAllIcons();
 	}
 }

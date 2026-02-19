@@ -3,10 +3,12 @@ package com.example.zuborarecipeapp.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.zuborarecipeapp.entity.Icon;
 import com.example.zuborarecipeapp.entity.Recipe;
 import com.example.zuborarecipeapp.service.RecipeService;
 
@@ -20,22 +22,21 @@ public class SearchController {
 	//	Serviceを使うためのフィールド
 	private final RecipeService recipeService;
 
-	@GetMapping
-	public String searchRecipes(
-			@RequestParam("category") String category,
-			@RequestParam(value = "iconName", required = false) String iconName, // 必須にしない
-			HttpSession session) {
+	@GetMapping("/search")
+    public String search(
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "iconNames", required = false) List<String> iconNames,
+            Model model,
+            HttpSession session) {
 
-		List<Recipe> filteredList;
-		if (iconName != null && !iconName.isEmpty()) {
-			// 両方ある場合は複合検索
-			filteredList = recipeService.searchByFilter(category, iconName);
-		} else {
-			// カテゴリーのみの場合は既存のカテゴリ検索
-			filteredList = recipeService.findByCategory(category);
-		}
+        // 検索実行
+        List<Recipe> filteredList = recipeService.searchByFilter(category, iconNames);
+        session.setAttribute("recipeList", filteredList);
 
-		session.setAttribute("recipeList", filteredList);
-		return "base";
-	}
+        // 【ここも重要！】再表示の際にもアイコンリストをModelに入れないと消えてしまう
+        List<Icon> allIcons = recipeService.getAllIcons();
+        model.addAttribute("allIcons", allIcons);
+
+        return "base";
+    }
 }

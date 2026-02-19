@@ -13,18 +13,18 @@
 
 <body>
 	<div class="detail-container">
+
 		<div class="recipe-card">
 
 			<!-- 画像 -->
 			<img th:src="@{'/data/image/'+${detailRecipe.imagePath}}" class="recipe-image">
 			<!-- アイコン -->
 			<div class="detailRecipe-iconList">
-				<a th:each="icon : ${detailRecipe.iconList}"
-					th:href="@{/search(category=${detailRecipe.category}, iconName=${icon.iconName})}">
+				<img th:each="icon : ${detailRecipe.iconList}"
+					th:href="@{/search(category=${detailRecipe.category}, iconName=${icon.iconName})}"
+					th:src="@{'/data/icon/'+${icon.iconPath}}" th:title="${icon.iconName}" th:alt="${icon.iconName}"
+					class="recipe-icon">
 
-					<img th:src="@{'/data/icon/'+${icon.iconPath}}"
-						th:title="${icon.iconName}" th:alt="${icon.iconName}" class="recipe-icon">
-				</a>
 			</div>
 
 			<!-- タイトル -->

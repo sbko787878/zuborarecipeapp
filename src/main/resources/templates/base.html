@@ -17,6 +17,36 @@
 	<div id="splash">
 		<h1 class="splash-title">HP5で出来る<br>レンチンごはん</h1>
 	</div>
+
+	<div class="search-navigation">
+		<form th:action="@{/search}" method="get" id="searchForm">
+
+			<div class="category-grid">
+				<label class="cat-label" th:each="n, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
+					<input type="radio" name="category" th:value="${n}" class="cat-radio"
+						onchange="filterIcons(this.value)">
+					<span class="cat-btn" th:text="${n}"></span>
+				</label>
+			</div>
+
+			<div id="materialWrapper" style="display: none; margin-top: 15px;">
+				<p style="font-size: 0.8rem; color: #666;">材料を選んでチェックをタップ！</p>
+				<div class="material-grid">
+					<label th:each="icon : ${allIcons}" class="icon-checkbox-label"
+						th:attr="data-category=${icon.targetCategory}"> <input type="checkbox" name="iconNames"
+							th:value="${icon.iconName}" class="hidden-checkbox">
+						<img th:src="@{'/data/icon/' + ${icon.iconPath}}" class="selectable-icon">
+					</label>
+				</div>
+			</div>
+
+			<div class="search-actions">
+				<button type="submit" class="action-btn-check">✔</button>
+				<a th:href="@{/}" class="action-btn-reset">✖</a>
+			</div>
+		</form>
+	</div>
+
 	<div class="swiper mySwiper">
 		<div class="swiper-wrapper">
 
@@ -28,11 +58,9 @@
 						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
 					</a>
 					<div class="recipe-iconList">
-						<a th:each="icon : ${recipe.iconList}"
-						th:href="@{/search(category=${recipe.category}, iconName=${icon.iconName})}"> 	
-						<img  th:src="@{'/data/icon/'+${icon.iconPath}}"
+						<img th:each="icon : ${recipe.iconList}" th:src="@{'/data/icon/'+${icon.iconPath}}"
 							th:title="${icon.iconName}" th:alt="${icon.iconName}" class="recipe-icon">
-						</a>
+
 					</div>
 					<!-- レシピ名 -->
 					<!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
@@ -61,6 +89,26 @@
 		//             prevEl: '.swiper-button-prev',
 		//         },
 		// });
+
+		function filterIcons(selectedCategory) {
+			const wrapper = document.getElementById('materialWrapper');
+			wrapper.style.display = 'block';
+
+			const iconLabels = document.querySelectorAll('.icon-checkbox-label');
+
+			iconLabels.forEach(label => {
+				// アイコンのデータ属性(data-category)と選択されたカテゴリーを比較
+				// HTML側で th:attr="data-category=${icon.targetCategory}" としておく必要があります
+				const iconCat = label.getAttribute('data-category');
+
+				if (iconCat === selectedCategory) {
+					label.style.display = 'inline-block';
+				} else {
+					label.style.display = 'none';
+				}
+			});
+		}
+
 	</script>
 </body>
 

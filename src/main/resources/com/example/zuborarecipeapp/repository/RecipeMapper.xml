@@ -37,29 +37,44 @@
 		i.id as i_id,
 		i.icon_name, i.icon_path
 		from zubora_recipes r left join icons i
-		on r.material like concat('%',i.icon_name, '%')
+		on
+		r.material like concat('%',i.icon_name, '%')
 		where r.id=#{id}
 	</select>
 
 	<select id="findByCategory" resultMap="recipeMap">
 		select
-		r.id as r_id, r.name, r.description, r.material, r.image_Path, r.category,
-		i.id as i_id, i.icon_name, i.icon_path
+		r.id as r_id,
+		r.name, r.description, r.material, r.image_Path, r.category,
+		i.id as
+		i_id, i.icon_name, i.icon_path
 		from zubora_recipes r left join icons i
 		on r.material like concat('%',i.icon_name, '%')
-		where r.category = #{category}
+		where r.category =
+		#{category}
 		order by r.id
 	</select>
 
 	<select id="searchByFilter" resultMap="recipeMap">
-		SELECT
-		r.id as r_id, r.name, r.description, r.material, r.image_Path, r.category,
-		i.id as i_id, i.icon_name, i.icon_path
-		from zubora_recipes r LEFT JOIN icons i 
-		on r.material like concat('%', i.icon_name, '%')
-		where r.category = #{category}
-		and r.material like concat('%', #{iconName}, '%')
-		order by r.id
+		SELECT r.*, i.* FROM zubora_recipes r
+		LEFT JOIN icons i ON r.material
+		LIKE CONCAT('%', i.icon_name, '%')
+		<where>
+			<if test="category != null"> AND r.category = #{category} </if>
+			<if test="iconNames != null and iconNames.size() > 0">
+				AND
+				<foreach item="name" collection="iconNames" open="("
+					separator=" AND " close=")">
+					r.material LIKE CONCAT('%', #{name}, '%')
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<select id="getAllIcons"
+		resultType="com.example.zuborarecipeapp.entity.Icon">
+		SELECT id, icon_name AS iconName, icon_path AS iconPath, 
+		category AS targetCategory  FROM icons
 	</select>
 
 </mapper>

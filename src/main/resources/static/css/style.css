@@ -29,6 +29,47 @@ body {
     margin: 0 auto;
 }
 
+/* ラジオボタンとチェックボックス本体は隠す */
+.cat-radio, .hidden-checkbox {
+    display: none;
+}
+
+/* カテゴリーボタンのスタイル */
+.cat-btn {
+    display: inline-block;
+    padding: 10px 15px;
+    border: 2px solid #ccc;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+/* カテゴリー選択時 */
+.cat-radio:checked + .cat-btn {
+    background-color: #ff9900;
+    color: white;
+    border-color: #ff9900;
+}
+
+/* 材料アイコンのスタイル */
+.selectable-icon {
+    width: 45px;
+    height: 45px;
+    filter: grayscale(100%); /* 未選択は白黒 */
+    opacity: 0.4;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 2px solid transparent;
+}
+
+/* 材料アイコン選択時 */
+.hidden-checkbox:checked + .selectable-icon {
+    filter: none; /* カラーにする */
+    opacity: 1;
+    border: 2px solid #ff9900;
+    border-radius: 8px;
+    transform: scale(1.1);
+}
 /* レシピ画像 */
 .recipe-image {
     width: 90vw;

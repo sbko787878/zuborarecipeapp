@@ -28,6 +28,7 @@ public class DetailController {
 		if (recipeList == null) {
 			// NULL対策、セッションにない場合はサービスを使ってDBから直接取得する
 			detailRecipe = recipeService.findRecipeById(id);
+			m.addAttribute("detailRecipe", detailRecipe);
 			return "detail";
 		} else {
 			for (Recipe recipe : recipeList) {

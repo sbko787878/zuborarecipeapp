@@ -15,5 +15,11 @@ public interface RecipeService {
 	List<Recipe> searchByFilter(String category, List<String> iconName);
 	
 	List<Icon> getAllIcons();
+	
+	void insertRecipe(Recipe recipe);
+	
+	void updateRecipe(Recipe recipe);
+	
+	void deleteRecipe(int id);
 
 }

@@ -22,10 +22,15 @@
 		<form th:action="@{/search}" method="get" id="searchForm">
 
 			<div class="category-grid">
-				<label class="cat-label" th:each="n, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
-					<input type="radio" name="category" th:value="${n}" class="cat-radio"
+				<label class="cat-label"
+					th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
+					<input type="radio" name="category" th:value="${stat.count}" class="cat-radio"
 						onchange="filterIcons(this.value)">
-					<span class="cat-btn" th:text="${n}"></span>
+
+					<span class="cat-btn">
+						<img th:src="@{'/data/icon/' + ${id} + '.png'}" th:alt="${id}"
+							style="width: 50px; height: 50px; display: block;">
+					</span>
 				</label>
 			</div>
 
@@ -34,8 +39,11 @@
 				<div class="material-grid">
 					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label" style="display: none;">
 						<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"
-							onchange="updateRecipeFilter()"> <img th:src="@{'/data/icon/' + ${icon.iconPath}}"
-							class="selectable-icon">
+							onchange="updateRecipeFilter()">
+						<div class="icon-content">
+							<img th:src="@{'/data/icon/' + ${icon.iconPath}}" class="selectable-icon">
+							<span class="icon-name" th:text="${icon.iconName}"></span>
+						</div>
 					</label>
 				</div>
 			</div>

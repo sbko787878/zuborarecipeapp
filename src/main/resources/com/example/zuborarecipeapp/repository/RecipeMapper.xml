@@ -73,8 +73,7 @@
 
 	<select id="getAllIcons"
 		resultType="com.example.zuborarecipeapp.entity.Icon">
-		SELECT id, icon_name AS iconName, icon_path AS iconPath, 
-		category AS targetCategory  FROM icons
+		SELECT id, icon_name AS iconName, icon_path AS iconPath FROM icons
 	</select>
 
 </mapper>

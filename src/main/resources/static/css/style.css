@@ -1,239 +1,250 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: #f7f7f7;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+	margin: 0;
+	padding: 0;
+	background: #f7f7f7;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-family: "M PLUS Rounded 1c", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 
 /* /base.html の中央寄せコンテナ */
- .base-container {
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
+.base-container {
+	padding: 20px 0;
+	display: flex;
+	justify-content: center;
 }
 
 /* カード全体 */
 .recipe-card {
-    background: #fff;
-    width: 100%;
-    height: 100%;
-    max-width: 420px;
-    padding: 10px 10px 10px 10px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    margin: 0 auto;
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	max-width: 420px;
+	padding: 10px 10px 10px 10px;
+	border-radius: 20px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	text-align: center;
+	margin: 0 auto;
 }
 
 /* ラジオボタンとチェックボックス本体は隠す */
-.cat-radio, .hidden-checkbox {
-    display: none;
+.cat-radio,
+.hidden-checkbox {
+	display: none;
 }
 
 /* カテゴリーボタンのスタイル */
 .cat-btn {
-    display: inline-block;
-    padding: 10px 15px;
-    border: 2px solid #ccc;
-    border-radius: 20px;
-    cursor: pointer;
-    transition: 0.3s;
+	display: inline-block;
+	padding: 10px 15px;
+	border: 2px solid #ccc;
+	border-radius: 20px;
+	cursor: pointer;
+	transition: 0.3s;
 }
 
 /* カテゴリー選択時 */
-.cat-radio:checked + .cat-btn {
-    background-color: #ff9900;
-    color: white;
-    border-color: #ff9900;
+.cat-radio:checked+.cat-btn {
+	background-color: #ff9900;
+	color: white;
+	border-color: #ff9900;
 }
 
 /* 材料アイコンのスタイル */
 .selectable-icon {
-    width: 45px;
-    height: 45px;
-    filter: grayscale(100%); /* 未選択は白黒 */
-    opacity: 0.4;
-    cursor: pointer;
-    transition: 0.3s;
-    border: 2px solid transparent;
+	width: 45px;
+	height: 45px;
+	filter: grayscale(100%);
+	/* 未選択は白黒 */
+	opacity: 0.4;
+	cursor: pointer;
+	transition: 0.3s;
+	border: 2px solid transparent;
 }
 
 /* 材料アイコン選択時 */
-.hidden-checkbox:checked + .selectable-icon {
-    filter: none; /* カラーにする */
-    opacity: 1;
-    border: 2px solid #ff9900;
-    border-radius: 8px;
-    transform: scale(1.1);
+.hidden-checkbox:checked+.selectable-icon {
+	filter: none;
+	/* カラーにする */
+	opacity: 1;
+	border: 2px solid #ff9900;
+	border-radius: 8px;
+	transform: scale(1.1);
 }
+
 /* レシピ画像 */
 .recipe-image {
-    width: 90vw;
-    height: 100vw;
-    object-fit: cover;
-    border-radius: 16px;
+	width: 90vw;
+	height: 100vw;
+	object-fit: cover;
+	border-radius: 16px;
 }
 
 
 /* タイトル */
 .recipe-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-top: 20px;
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-top: 20px;
 }
 
 /* セクションタイトル（材料・作り方） */
 .section-title {
-    text-align: left;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    border-left: 4px solid #ff8c42;
-    padding-left: 8px;
+	text-align: left;
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-top: 25px;
+	margin-bottom: 10px;
+	border-left: 4px solid #ff8c42;
+	padding-left: 8px;
 }
 
 /* 材料リスト */
 .material-list {
-    text-align: left;
-    padding-left: 20px;
-    line-height: 1.6;
+	text-align: left;
+	padding-left: 20px;
+	line-height: 1.6;
 }
 
 /* 作り方リスト */
 .steps-list {
-    text-align: left;
-    padding-left: 20px;
-    line-height: 1.6;
+	text-align: left;
+	padding-left: 20px;
+	line-height: 1.6;
 }
 
 /* 戻るボタン */
 .back-btn-area {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .back-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #ddd;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
+	display: inline-block;
+	padding: 10px 20px;
+	background: #ddd;
+	border-radius: 10px;
+	text-decoration: none;
+	color: #333;
+	font-weight: 600;
 }
 
 /* スプラッシュ画面全体 */
 #splash {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: fadeOut 2.5s ease forwards;
-    animation-delay: 2.0s;
-    /* 表示してから消えるまでの時間 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	animation: fadeOut 2.5s ease forwards;
+	animation-delay: 2.0s;
+	/* 表示してから消えるまでの時間 */
 }
 
 /* アプリ名の文字 */
 .splash-title {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    animation: fadeIn 1.5s ease forwards;
-    background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
-    background-clip: text;
-    -webkit-background-clip: text; /* Safari対策 */
-    color: transparent; /* 文字色を透明にする */
-    font-family: 'Zen Kaku Gothic New', sans-serif;
+	margin: 0;
+	font-size: 2.5rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	opacity: 0;
+	animation: fadeIn 1.5s ease forwards;
+	background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	/* Safari対策 */
+	color: transparent;
+	/* 文字色を透明にする */
+	font-family: 'Zen Kaku Gothic New', sans-serif;
 
 }
 
 /* ふわっと表示 */
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
+	0% {
+		opacity: 0;
+		transform: scale(0.9);
+	}
 
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 /* ふわっと消える */
 @keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
+	0% {
+		opacity: 1;
+	}
 
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
 }
 
 .recipe-title,
 .material-title,
-.section-title{
-    white-space: pre-wrap;
+.section-title {
+	white-space: pre-wrap;
 }
 
 
 
 .recipe-image {
-    width: 400px;
-    height: 400px;
-    object-fit: cover;
+	width: 400px;
+	height: 400px;
+	object-fit: cover;
 }
 
 @media screen and (max-width: 640px) {
-    .recipe-image {
-        width: 90vw;
-        height: 90vw;
-    }
+	.recipe-image {
+		width: 90vw;
+		height: 90vw;
+	}
 }
 
-.recipe-icon{
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
+.recipe-icon {
+	width: 64px;
+	height: 64px;
+	object-fit: contain;
 }
 
-.recipe-iconList{
-     width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 16px;
-    display: flex;
-    gap: 14px;
-    justify-content: center
+.recipe-iconList {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 16px;
+	display: flex;
+	gap: 14px;
+	justify-content: center
 }
 
-.detailRecipe-iconList{
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 16px;
-    display: flex;
-    gap: 14px;
-    justify-content: center
+.detailRecipe-iconList {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 16px;
+	display: flex;
+	gap: 14px;
+	justify-content: center
 }
 
+.material-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+	padding: 10px;
+}
 
-
-
-
-
-
+.icon-checkbox-label {
+	margin: 5px;
+}

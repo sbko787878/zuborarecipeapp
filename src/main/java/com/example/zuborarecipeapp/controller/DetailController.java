@@ -23,15 +23,15 @@ public class DetailController {
 	@GetMapping("/recipeList/{id}")
 	public String showDetailName(@PathVariable("id") int id, Model m, HttpSession session) {
 		Recipe detailRecipe=null;
-		List<Recipe> recipeList = (List<Recipe>) session.getAttribute("recipeList");
+		List<Recipe> allRecipeList = (List<Recipe>) session.getAttribute("allRecipeList");
 
-		if (recipeList == null) {
+		if (allRecipeList == null) {
 			// NULL対策、セッションにない場合はサービスを使ってDBから直接取得する
 			detailRecipe = recipeService.findRecipeById(id);
 			m.addAttribute("detailRecipe", detailRecipe);
 			return "detail";
 		} else {
-			for (Recipe recipe : recipeList) {
+			for (Recipe recipe : allRecipeList) {
 				// リスト内の各レシピのIDと、URLのIDを比較
 				if (recipe.getId() == id) {
 					detailRecipe = recipe; // 一致したら変数に保存

@@ -30,14 +30,14 @@ public class AdminRecipeController {
 	@GetMapping("/new")
 	public String newForm(Model model) {
 		model.addAttribute("recipe", new Recipe());
-		return "admin/recipeform"; // ← 新規登録フォーム
+		return "admin/recipeform"; 
 	}
 
 	// 編集フォーム
 	@GetMapping("/edit/{id}")
 	public String editForm(@PathVariable int id, Model model) {
 		model.addAttribute("recipe", recipeService.findRecipeById(id));
-		return "admin/recipeform"; // ← 編集も同じフォームを使う
+		return "admin/recipeform"; 
 	}
 
 	// 保存（新規 or 更新）
@@ -52,4 +52,11 @@ public class AdminRecipeController {
 
 		return "redirect:/admin/recipes"; // 保存後に一覧へ戻る
 	}
+	
+	// 削除
+		@GetMapping("/delete/{id}")
+		public String delete(@PathVariable int id) {
+			recipeService.deleteRecipe(id);
+			return "redirect:/admin/recipes";
+		}
 }

@@ -113,7 +113,13 @@
 		}
 
 		function filterIcons(selectedCategory) {
-			currentCategory = selectedCategory;
+
+			// 数字を丸数字に変換するマップ
+			const circleMap = {"1": "①", "2": "②", "3": "③", "4": "④", "5": "⑤"};
+			const circleCat = circleMap[selectedCategory] || selectedCategory;
+
+			currentCategory = circleCat; // HTML側の "④" に合わせる
+			console.log("① 検索するカテゴリー:", currentCategory);
 
 			const wrapper = document.getElementById('materialWrapper');
 			if (wrapper) wrapper.style.display = 'block';
@@ -131,6 +137,8 @@
 					activeMaterials += " " + (slide.getAttribute('data-icons') || "").trim() + " ";
 				}
 			});
+
+			console.log("② 見つかった材料リスト文字列:", activeMaterials);
 
 			// アイコンの表示・非表示
 			document.querySelectorAll('.icon-checkbox-label').forEach(label => {

@@ -45,7 +45,6 @@ public class RecipeServiceImpl implements RecipeService {
 	}
 
 	//	管理者ページ
-
 	@Override
 	public void insertRecipe(Recipe recipe) {
 		// IDがnullなら新規、あれば更新
@@ -53,11 +52,9 @@ public class RecipeServiceImpl implements RecipeService {
 			recipeMapper.insert(recipe);
 		}
 	}
-
 	@Override
 	public void updateRecipe(Recipe recipe) {
 		recipeMapper.update(recipe);
-
 	}
 
 	@Override

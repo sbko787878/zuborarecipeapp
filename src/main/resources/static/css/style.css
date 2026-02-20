@@ -275,31 +275,30 @@ body {
 
 /* グリッド全体のコンテナ */
 .category-grid {
-	display: flex;
-	flex-wrap: wrap;
-	/* 折り返しを許可 */
-	justify-content: center;
-	/* 中央寄せ */
-	gap: 20px;
-	/* アイコン同士の間隔 */
-	max-width: 500px;
-	/* 横幅を制限して3個で折り返すように調整 */
-	margin: 0 auto;
-	/* 全体を中央に配置 */
+display: flex;
+    overflow-x: auto; /* 横スクロール */
+    gap: 16px;
+    padding: 10px;
+    justify-content: flex-start
 }
 
 .cat-btn {
-	display: flex;
+    display: flex;
+    overflow-x: auto; /* 横スクロール */
+    gap: 16px;
+    padding: 10px;
+    justify-content: flex-start
+	/* display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 4px;
-	border-radius: 50%;
+	border-radius: 50%; */
 }
 
 /* カテゴリーアイコンを丸く切り抜く */
 .cat-btn img {
-	width: 100px;
-	height: 100px;
+	width: 80px;
+	height: 80px;
 	object-fit: cover;
 	/* これで四角い画像の中央を丸く切り取る */
 	border-radius: 50%;

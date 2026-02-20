@@ -24,7 +24,7 @@
 			<div class="category-grid">
 				<label class="cat-label" th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
 					<input type="radio" name="category" th:value="${stat.count}" class="cat-radio"
-						onchange="filterIcons(this.value)">
+						onclick="filterIcons(this.value)">
 					<span class="cat-btn">
 						<img th:src="@{'/data/icon/' + ${id} + '.png'}" th:alt="${id}">
 					</span>
@@ -63,9 +63,11 @@
 						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
 					</a>
 					<div class="recipe-iconList">
-						<img th:each="icon : ${recipe.iconList}" th:src="@{'/data/icon/'+${icon.iconPath}}"
-							th:title="${icon.iconName}" th:alt="${icon.iconName}" class="recipe-icon">
-
+						<div th:each="icon : ${recipe.iconList}" class="recipe-icon-item">
+							<img th:src="@{'/data/icon/'+${icon.iconPath}}" th:title="${icon.iconName}"
+								th:alt="${icon.iconName}" class="recipe-icon">
+							<span class="recipe-icon-name" th:text="${icon.iconName}"></span>
+						</div>
 					</div>
 					<!-- レシピ名 -->
 					<!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
@@ -87,23 +89,42 @@
 			pagination: {el: ".swiper-pagination", clickable: true},
 		});
 
-		let currentCategory = "";
+		let currentCategory = ""; // ここには常に「丸数字（①など）」を保持するようにします
 
 		function updateRecipeFilter() {
 			const slides = document.querySelectorAll('.swiper-slide');
 			const checkedCheckboxes = document.querySelectorAll('.hidden-checkbox:checked');
-			const selectedMaterialNames = Array.from(checkedCheckboxes).map(cb => cb.value);
+			const selectedMaterialNames = Array.from(checkedCheckboxes).map(cb => cb.value.trim());
+
+			let reachableMaterials = ""; // デッドエンド防止用：現在表示中のレシピに含まれる材料
 
 			slides.forEach(slide => {
-				const recipeCat = slide.getAttribute('data-category');
-				const recipeMaterials = slide.getAttribute('data-icons') || "";
+				const recipeCat = (slide.getAttribute('data-category') || "").trim();
+				const recipeMaterials = (slide.getAttribute('data-icons') || "");
 
-				// == で比較（文字列/数値の違いを許容）
-				const categoryMatch = (recipeCat == currentCategory);
-				// 材料検索（空文字や改行を考慮）
-				const materialMatch = selectedMaterialNames.every(name => recipeMaterials.includes(name.trim()));
+				const categoryMatch = (currentCategory === "" || recipeCat === currentCategory);
+				const materialMatch = selectedMaterialNames.every(name => recipeMaterials.includes(name));
 
-				slide.style.display = (categoryMatch && materialMatch) ? 'block' : 'none';
+				if (categoryMatch && materialMatch) {
+					slide.style.display = 'block';
+					reachableMaterials += " " + recipeMaterials + " ";
+				} else {
+					slide.style.display = 'none';
+				}
+			});
+
+			// 材料アイコンの「デッドエンド（ヒット0）」防止表示切り替え
+			document.querySelectorAll('.icon-checkbox-label').forEach(label => {
+				const input = label.querySelector('input');
+				const iconName = input.value.trim();
+
+				if (input.checked) {
+					label.style.display = 'inline-block';
+				} else if (reachableMaterials.includes(iconName)) {
+					label.style.display = 'inline-block';
+				} else {
+					label.style.display = 'none';
+				}
 			});
 
 			if (swiper) {
@@ -113,39 +134,59 @@
 		}
 
 		function filterIcons(selectedCategory) {
-
-			// 数字を丸数字に変換するマップ
+			// 1. 半角数字を丸数字に変換するマップ
 			const circleMap = {"1": "①", "2": "②", "3": "③", "4": "④", "5": "⑤"};
-			const circleCat = circleMap[selectedCategory] || selectedCategory;
+			const inputVal = selectedCategory.toString();
+			const circleVal = circleMap[inputVal] || inputVal;
 
-			currentCategory = circleCat; // HTML側の "④" に合わせる
-			console.log("① 検索するカテゴリー:", currentCategory);
+			// --- 2. リセット判定 ---
+			if (currentCategory === circleVal) {
+				currentCategory = "";
+
+				// 大分類ラジオボタンの選択解除
+				document.querySelectorAll('.cat-radio').forEach(radio => radio.checked = false);
+
+				// 【追加】材料チェックボックスのチェックもすべて外す
+				document.querySelectorAll('.hidden-checkbox').forEach(cb => cb.checked = false);
+
+				// 材料エリアを隠す
+				const wrapper = document.getElementById('materialWrapper');
+				if (wrapper) wrapper.style.display = 'none';
+
+				console.log("カテゴリーと材料の選択をすべてリセットしました");
+				updateRecipeFilter(); // これでレシピ表示が全件に戻ります
+				return;
+			}
+
+			// 3. 新規選択
+			currentCategory = circleVal;
+			console.log("① 検索開始 カテゴリー:", currentCategory);
 
 			const wrapper = document.getElementById('materialWrapper');
 			if (wrapper) wrapper.style.display = 'block';
 
-			// チェックリセット
+			// 材料チェックをリセット
 			document.querySelectorAll('.hidden-checkbox').forEach(cb => cb.checked = false);
 
 			const slides = document.querySelectorAll('.swiper-slide');
 			let activeMaterials = "";
 
-			// filterIcons 関数内の該当箇所を以下のように修正
+			// カテゴリー内にあるレシピの全材料を収集
 			slides.forEach(slide => {
-				if (slide.getAttribute('data-category') == currentCategory) { // == で数値/文字列の差を無視
-					// 前後の空白を取り除きつつ連結
+				const slideCat = (slide.getAttribute('data-category') || "").trim();
+				// 丸数字と半角数字、どちらが入っていても一致するように判定
+				if (slideCat === circleVal || slideCat === inputVal) {
 					activeMaterials += " " + (slide.getAttribute('data-icons') || "").trim() + " ";
 				}
 			});
 
-			console.log("② 見つかった材料リスト文字列:", activeMaterials);
+			console.log("② 収集された材料:", activeMaterials);
 
-			// アイコンの表示・非表示
+			// 材料アイコンをそのカテゴリーに含まれるものだけに絞って表示
 			document.querySelectorAll('.icon-checkbox-label').forEach(label => {
 				const input = label.querySelector('input');
 				const iconName = input ? input.value.trim() : "";
 
-				// 部分一致ではなく、単語として含まれているか（またはincludes）
 				if (iconName !== "" && activeMaterials.includes(iconName)) {
 					label.style.display = 'inline-block';
 				} else {

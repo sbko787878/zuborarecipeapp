@@ -52,8 +52,21 @@ body {
 	background-color: rgba(255, 153, 0, 0.1);
 }
 
+/* アイコン画像自体のサイズと切り抜き設定 */
 .cat-btn img {
+	width: 85px;
+	/* 白枠を消すために少しサイズを調整 */
+	height: 85px;
+	object-fit: cover;
+	/* 枠いっぱいに広げて余白をカット */
 	border-radius: 50%;
+	/* 正円で切り抜く */
+	border: none;
+	/* もし枠線があれば削除 */
+
+	/* ズームして外側の白枠を外に追い出す設定 */
+	transform: scale(1.2);
+	transition: transform 0.2s;
 }
 
 /* 材料アイコンのスタイル */
@@ -258,6 +271,22 @@ body {
 	width: 40px;
 	height: 40px;
 	object-fit: contain;
+	border-radius: 50%;
+}
+
+/* グリッド全体のコンテナ */
+.category-grid {
+	display: flex;
+	flex-wrap: wrap;
+	/* 折り返しを許可 */
+	justify-content: center;
+	/* 中央寄せ */
+	gap: 20px;
+	/* アイコン同士の間隔 */
+	max-width: 500px;
+	/* 横幅を制限して3個で折り返すように調整 */
+	margin: 0 auto;
+	/* 全体を中央に配置 */
 }
 
 .cat-btn {
@@ -265,6 +294,50 @@ body {
 	flex-direction: column;
 	align-items: center;
 	gap: 4px;
+	border-radius: 50%;
+}
+
+/* カテゴリーアイコンを丸く切り抜く */
+.cat-btn img {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	/* これで四角い画像の中央を丸く切り取る */
+	border-radius: 50%;
+	/* 正円にする */
+	transition: transform 0.2s;
+}
+
+/* ラベル側ではみ出した部分を表示しない */
+.cat-label {
+	flex: 0 0 30%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
+	overflow: hidden;
+	border-radius: 50%;
+	/* はみ出した白枠を隠す */
+}
+
+/* ホバー時はさらに少し大きく */
+.cat-btn img:hover {
+	transform: scale(1.3);
+	border-radius: 50%;
+}
+
+/* ラジオボタンは隠す */
+.cat-radio {
+	display: none;
+}
+
+/* 選択された時のエフェクトを「外枠」ではなく「中の円」に合わせる */
+.cat-radio:checked+.cat-btn img {
+	filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.8));
+	border: 3px solid #ffa500;
+	/* 選択時のボーダーを内側に寄せる（白枠を見せないため） */
+	box-sizing: border-box;
+	border-radius: 50%;
 }
 
 /* カテゴリーアイコン（大分類）選択時の色の変化 */
@@ -272,6 +345,7 @@ body {
 	filter: brightness(0.2);
 	/* 大分類アイコンも選択時に濃くする場合 */
 	opacity: 1;
+	border-radius: 50%;
 }
 
 /* 材料アイコンと名前を縦に並べる */

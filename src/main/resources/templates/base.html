@@ -22,14 +22,11 @@
 		<form th:action="@{/search}" method="get" id="searchForm">
 
 			<div class="category-grid">
-				<label class="cat-label"
-					th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
+				<label class="cat-label" th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
 					<input type="radio" name="category" th:value="${stat.count}" class="cat-radio"
 						onchange="filterIcons(this.value)">
-
 					<span class="cat-btn">
-						<img th:src="@{'/data/icon/' + ${id} + '.png'}" th:alt="${id}"
-							style="width: 50px; height: 50px; display: block;">
+						<img th:src="@{'/data/icon/' + ${id} + '.png'}" th:alt="${id}">
 					</span>
 				</label>
 			</div>
@@ -37,7 +34,7 @@
 			<div id="materialWrapper" style="display: none; margin-top: 15px;">
 				<p style="font-size: 0.8rem; color: #666;">材料を選んでチェックをタップ！</p>
 				<div class="material-grid">
-					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label" style="display: none;">
+					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label">
 						<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"
 							onchange="updateRecipeFilter()">
 						<div class="icon-content">
@@ -81,92 +78,74 @@
 		</div>
 		<div class="swiper-pagination"></div>
 	</div>
-	<script>
+
+	<script th:inline="javascript">
 		var swiper = new Swiper(".mySwiper", {
 			direction: "vertical",
 			slidesPerView: 1,
 			spaceBetween: 30,
-			// mousewheel: true,
-			pagination: {
-				el: ".swiper-pagination",
-				clickable: true,
-			},
+			pagination: {el: ".swiper-pagination", clickable: true},
 		});
-		//          navigator:{
-		//             nextEl: '.swiper-button-next',
-		//             prevEl: '.swiper-button-prev',
-		//         },
-		// });
 
-		let currentCategory = ""; // 現在選ばれている大分類を保持
+		let currentCategory = "";
 
-		// 1. 大分類ボタンを押した時
-		function filterIcons(selectedCategory) {
-			currentCategory = selectedCategory;
-
-			// 全ての材料チェックボックスをリセット（大分類を切り替えた時は全表示からスタートするため）
-			const checkboxes = document.querySelectorAll('.hidden-checkbox');
-			checkboxes.forEach(cb => cb.checked = false);
-
-			const wrapper = document.getElementById('materialWrapper');
-			wrapper.style.display = 'block';
-
-			const slides = document.querySelectorAll('.swiper-slide');
-			const iconLabels = document.querySelectorAll('.icon-checkbox-label');
-			let activeMaterialsInCat = "";
-
-			// そのカテゴリーに属するレシピの材料を収集
-			slides.forEach(slide => {
-				if (slide.getAttribute('data-category') === currentCategory) {
-					activeMaterialsInCat += slide.getAttribute('data-icons') + " ";
-				}
-			});
-
-			// 使える材料アイコンだけを表示
-			iconLabels.forEach(label => {
-				const iconName = label.querySelector('input').value;
-				if (activeMaterialsInCat.includes(iconName)) {
-					label.style.setProperty("display", "inline-block", "important");
-				} else {
-					label.style.display = 'none';
-				}
-			});
-
-			// レシピ表示を更新（大分類のみの状態で全レシピを表示）
-			updateRecipeFilter();
-		}
-
-		// 2. 材料アイコンをチェック/解除した時、および大分類切り替え時に呼ばれる
 		function updateRecipeFilter() {
 			const slides = document.querySelectorAll('.swiper-slide');
-
-			// 現在チェックされている材料の名前を取得
 			const checkedCheckboxes = document.querySelectorAll('.hidden-checkbox:checked');
 			const selectedMaterialNames = Array.from(checkedCheckboxes).map(cb => cb.value);
 
 			slides.forEach(slide => {
 				const recipeCat = slide.getAttribute('data-category');
-				const recipeMaterials = slide.getAttribute('data-icons');
+				const recipeMaterials = slide.getAttribute('data-icons') || "";
 
-				// 条件A: 大分類が一致しているか
-				const categoryMatch = (recipeCat === currentCategory);
+				// == で比較（文字列/数値の違いを許容）
+				const categoryMatch = (recipeCat == currentCategory);
+				// 材料検索（空文字や改行を考慮）
+				const materialMatch = selectedMaterialNames.every(name => recipeMaterials.includes(name.trim()));
 
-				// 条件B: 選択した全ての材料がレシピに含まれているか (AND検索)
-				// もし1つもチェックしていなければ常にtrue（その大分類の全レシピを出す）
-				const materialMatch = selectedMaterialNames.every(name => recipeMaterials.includes(name));
-
-				if (categoryMatch && materialMatch) {
-					slide.style.display = 'block';
-				} else {
-					slide.style.display = 'none';
-				}
+				slide.style.display = (categoryMatch && materialMatch) ? 'block' : 'none';
 			});
 
-			// Swiperの表示を更新して最初のスライドに戻す
-			if (typeof swiper !== 'undefined') {
+			if (swiper) {
 				swiper.update();
 				swiper.slideTo(0);
 			}
+		}
+
+		function filterIcons(selectedCategory) {
+			currentCategory = selectedCategory;
+
+			const wrapper = document.getElementById('materialWrapper');
+			if (wrapper) wrapper.style.display = 'block';
+
+			// チェックリセット
+			document.querySelectorAll('.hidden-checkbox').forEach(cb => cb.checked = false);
+
+			const slides = document.querySelectorAll('.swiper-slide');
+			let activeMaterials = "";
+
+			// filterIcons 関数内の該当箇所を以下のように修正
+			slides.forEach(slide => {
+				if (slide.getAttribute('data-category') == currentCategory) { // == で数値/文字列の差を無視
+					// 前後の空白を取り除きつつ連結
+					activeMaterials += " " + (slide.getAttribute('data-icons') || "").trim() + " ";
+				}
+			});
+
+			// アイコンの表示・非表示
+			document.querySelectorAll('.icon-checkbox-label').forEach(label => {
+				const input = label.querySelector('input');
+				const iconName = input ? input.value.trim() : "";
+
+				// 部分一致ではなく、単語として含まれているか（またはincludes）
+				if (iconName !== "" && activeMaterials.includes(iconName)) {
+					label.style.display = 'inline-block';
+				} else {
+					label.style.display = 'none';
+				}
+			});
+
+			updateRecipeFilter();
 		}
 	</script>
 </body>

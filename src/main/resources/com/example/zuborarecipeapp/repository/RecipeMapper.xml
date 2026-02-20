@@ -73,27 +73,33 @@
 
 	<select id="getAllIcons"
 		resultType="com.example.zuborarecipeapp.entity.Icon">
-		SELECT id, icon_name AS iconName, icon_path AS iconPath FROM icons
+		SELECT id, icon_name AS iconName, icon_path AS iconPath
+		FROM icons
 	</select>
 
-<!--管理者ページ用-->
-	<insert id="insertRecipe" parameterType="com.example.zuborarecipeapp.entity.Recipe">
-    INSERT INTO zubora_recipes (name, description, material, image_Path, icon, category)
-    VALUES (#{name}, #{description}, #{material}, #{imagePath}, #{icon}, #{category})
-    </insert>
+	<!--管理者ページ用 -->
+	<insert id="insertRecipe"
+		parameterType="com.example.zuborarecipeapp.entity.Recipe">
+		INSERT INTO zubora_recipes (name, description, material, image_Path, icon,
+		category)
+		VALUES (#{name}, #{description}, #{material}, #{imagePath}, #{icon},
+		#{category})
+	</insert>
 
-   <update id="updateRecipe" parameterType="com.example.zuborarecipeapp.entity.Recipe">
-    UPDATE zubora_recipes 
-    SET name = #{name}, 
-        description = #{description}, 
-        material = #{material}, 
-        image_Path = #{imagePath}, 
-        icon = #{icon}, 
-        category = #{category}
-    WHERE id = #{id}
-    </update>
+	<update id="updateRecipe"
+		parameterType="com.example.zuborarecipeapp.entity.Recipe">
+		UPDATE zubora_recipes
+		SET name = #{name},
+		description = #{description},
+		material = #{material},
+		image_Path = #{imagePath},
+		icon = #{icon},
+		category = #{category}
+		WHERE id = #{id}
+	</update>
 
-   <delete id="deleteRecipe">
-    DELETE FROM zubora_recipes WHERE id = #{id}
-  </delete>
+	<delete id="deleteRecipe">
+		DELETE FROM zubora_recipes WHERE id = #{id}
+	</delete>
+
 </mapper>

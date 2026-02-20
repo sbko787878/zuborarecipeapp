@@ -16,10 +16,10 @@ public interface RecipeService {
 	
 	List<Icon> getAllIcons();
 	
-//	void insertRecipe(Recipe recipe);
-//	
-//	void updateRecipe(Recipe recipe);
-//	
-//	void deleteRecipe(int id);
+	void insertRecipe(Recipe recipe);
+	
+	void updateRecipe(Recipe recipe);
+	
+	void deleteRecipe(int id);
 
 }

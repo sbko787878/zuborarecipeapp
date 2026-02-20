@@ -83,7 +83,6 @@
     INSERT INTO zubora_recipes (name, description, material, image_Path, category)
     VALUES (#{name}, #{description}, #{material}, #{imagePath}, #{category})
     </insert>
-
    <update id="update" parameterType="com.example.zuborarecipeapp.entity.Recipe">
     UPDATE zubora_recipes 
     SET name = #{name}, 

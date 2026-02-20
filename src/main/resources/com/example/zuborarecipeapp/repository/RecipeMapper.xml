@@ -77,23 +77,22 @@
 	</select>
 
 <!--管理者ページ用-->
-	<insert id="insertRecipe" parameterType="com.example.zuborarecipeapp.entity.Recipe">
-    INSERT INTO zubora_recipes (name, description, material, image_Path, icon, category)
-    VALUES (#{name}, #{description}, #{material}, #{imagePath}, #{icon}, #{category})
+	<insert id="insert" parameterType="com.example.zuborarecipeapp.entity.Recipe">
+    INSERT INTO zubora_recipes (name, description, material, image_Path, category)
+    VALUES (#{name}, #{description}, #{material}, #{imagePath}, #{category})
     </insert>
 
-   <update id="updateRecipe" parameterType="com.example.zuborarecipeapp.entity.Recipe">
+   <update id="update" parameterType="com.example.zuborarecipeapp.entity.Recipe">
     UPDATE zubora_recipes 
     SET name = #{name}, 
         description = #{description}, 
         material = #{material}, 
-        image_Path = #{imagePath}, 
-        icon = #{icon}, 
+        image_Path = #{imagePath},  
         category = #{category}
     WHERE id = #{id}
     </update>
 
-   <delete id="deleteRecipe">
+   <delete id="delete">
     DELETE FROM zubora_recipes WHERE id = #{id}
   </delete>
 </mapper>

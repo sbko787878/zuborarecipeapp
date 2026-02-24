@@ -20,7 +20,6 @@
 
 	<div class="search-navigation">
 		<form th:action="@{/search}" method="get" id="searchForm">
-
 			<div class="category-grid">
 				<label class="cat-label" th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
 					<input type="radio" name="category" th:value="${stat.count}" class="cat-radio"
@@ -32,8 +31,17 @@
 			</div>
 
 			<div id="materialWrapper" style="display: none; margin-top: 15px;">
-				<p style="font-size: 0.8rem; color: #666;">材料を選んでチェックをタップ！</p>
-				<div class="material-grid">
+				<div class="middle-category-selector"
+					style="display: flex; justify-content: center; gap: 8px; margin-bottom: 10px;">
+					<button type="button" class="mid-cat-btn active"
+						onclick="changeMiddleCategory(1, this)">肉/魚</button>
+					<button type="button" class="mid-cat-btn" onclick="changeMiddleCategory(2, this)">野菜/きのこ</button>
+					<button type="button" class="mid-cat-btn" onclick="changeMiddleCategory(3, this)">調味料/その他</button>
+				</div>
+
+				<p style="font-size: 0.7rem; color: #666; text-align: center; margin-bottom: 10px;">材料を選んでチェック！</p>
+
+				<div id="allIconsStorage" style="display: none;">
 					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label"
 						th:attr="data-mid=${icon.middleCategory}">
 						<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"
@@ -44,38 +52,22 @@
 						</div>
 					</label>
 				</div>
-			</div>
 
-			<div class="search-actions" style="display:none;">
-				<button type="submit" class="action-btn-check">✔</button>
+				<div class="swiper materialSwiper">
+					<div class="swiper-wrapper" id="materialSlideContainer"></div>
+				</div>
 			</div>
 		</form>
 	</div>
-
 	<div class="swiper mySwiper">
 		<div class="swiper-wrapper">
-
-			<!-- レシピをループ -->
 			<div class="swiper-slide" th:each="recipe : ${session.allRecipeList}"
 				th:attr="data-category=${recipe.category}, data-icons=${recipe.material}">
 				<div class="recipe-card">
-					<!-- レシピ画像をタップしたら詳細へ -->
 					<a th:href="@{'/recipeList/' + ${recipe.id}}">
 						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
 					</a>
-					<!-- <div class="recipe-iconList">
-						<div th:each="icon : ${recipe.iconList}" class="recipe-icon-item">
-							<img th:src="@{'/data/icon/'+${icon.iconPath}}" th:title="${icon.iconName}"
-								th:alt="${icon.iconName}" class="recipe-icon">
-							<span class="recipe-icon-name" th:text="${icon.iconName}"></span>
-						</div>
-					</div> -->
-					<!-- レシピ名 -->
-					<!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
-					<h2 class="recipe-title" th:utext="${recipe.name}">
-						<!-- <h1 th:utext="${recipe.formattedTitle}"></h1> -->
-						期間限定TEA
-					</h2>
+					<h2 class="recipe-title" th:utext="${recipe.name}">レシピ名</h2>
 				</div>
 			</div>
 		</div>
@@ -90,12 +82,15 @@
 			pagination: {el: ".swiper-pagination", clickable: true},
 		});
 
+		let materialSwiper; // 中分類スライド用
+		let currentMidNum = 1; // 初期表示は「1:肉/魚」
 		let currentCategory = ""; // ここには常に「丸数字（①など）」を保持するようにします
 
 		function updateRecipeFilter() {
 			const slides = document.querySelectorAll('.swiper-slide');
 			const checkedCheckboxes = document.querySelectorAll('.hidden-checkbox:checked');
 			const selectedMaterialNames = Array.from(checkedCheckboxes).map(cb => cb.value.trim());
+
 
 			let reachableMaterials = ""; // デッドエンド防止用：現在表示中のレシピに含まれる材料
 
@@ -114,24 +109,13 @@
 				}
 			});
 
-			// 材料アイコンの「デッドエンド（ヒット0）」防止表示切り替え
-			document.querySelectorAll('.icon-checkbox-label').forEach(label => {
-				const input = label.querySelector('input');
-				const iconName = input.value.trim();
-
-				if (input.checked) {
-					label.style.display = 'inline-block';
-				} else if (reachableMaterials.includes(iconName)) {
-					label.style.display = 'inline-block';
-				} else {
-					label.style.display = 'none';
-				}
-			});
-
 			if (swiper) {
 				swiper.update();
 				swiper.slideTo(0);
 			}
+
+			// ★修正：これまでのアイコン表示切り替えコードを削除し、以下の関数呼び出しに置き換える
+			renderMaterialSwiper();
 		}
 
 		function filterIcons(selectedCategory) {
@@ -169,33 +153,74 @@
 			// 材料チェックをリセット
 			document.querySelectorAll('.hidden-checkbox').forEach(cb => cb.checked = false);
 
-			const slides = document.querySelectorAll('.swiper-slide');
-			let activeMaterials = "";
-
-			// カテゴリー内にあるレシピの全材料を収集
-			slides.forEach(slide => {
-				const slideCat = (slide.getAttribute('data-category') || "").trim();
-				// 丸数字と半角数字、どちらが入っていても一致するように判定
-				if (slideCat === circleVal || slideCat === inputVal) {
-					activeMaterials += " " + (slide.getAttribute('data-icons') || "").trim() + " ";
-				}
-			});
-
-			console.log("② 収集された材料:", activeMaterials);
-
-			// 材料アイコンをそのカテゴリーに含まれるものだけに絞って表示
-			document.querySelectorAll('.icon-checkbox-label').forEach(label => {
-				const input = label.querySelector('input');
-				const iconName = input ? input.value.trim() : "";
-
-				if (iconName !== "" && activeMaterials.includes(iconName)) {
-					label.style.display = 'inline-block';
-				} else {
-					label.style.display = 'none';
-				}
-			});
-
 			updateRecipeFilter();
+		}
+
+		// ★新規追加：中分類ボタン（肉/魚など）が押された時の処理
+		function changeMiddleCategory(midNum, btnElement) {
+			currentMidNum = midNum;
+
+			// ボタンの見た目（active）を切り替え
+			document.querySelectorAll('.mid-cat-btn').forEach(btn => btn.classList.remove('active'));
+			btnElement.classList.add('active');
+
+			// スライドを再描画
+			renderMaterialSwiper();
+		}
+
+		// ★新規追加：条件に合うアイコンだけを Swiper の中に集めて表示する処理
+		function renderMaterialSwiper() {
+			const container = document.getElementById('materialSlideContainer');
+			const storage = document.getElementById('allIconsStorage'); // 待機場所を取得
+			if (!container || !storage) return;
+
+			// 1. スライド内に残っているアイコンをすべて「待機場所」へ避難させる
+			const currentIcons = container.querySelectorAll('.icon-checkbox-label');
+			currentIcons.forEach(icon => storage.appendChild(icon));
+
+			// スライドの「枠（swiper-slide）」だけをクリア
+			container.innerHTML = '';
+
+			// 2. 現在表示されているレシピに含まれる材料を特定
+			let reachableMaterials = "";
+			document.querySelectorAll('.swiper-slide[data-category]').forEach(slide => {
+				if (slide.style.display !== 'none') {
+					reachableMaterials += " " + (slide.getAttribute('data-icons') || "") + " ";
+				}
+			});
+
+			// 3. 待機場所にある全ラベルから、条件に合うものだけをスライドへ移動
+			const allLabels = storage.querySelectorAll('.icon-checkbox-label');
+
+			allLabels.forEach(label => {
+				const mid = parseInt(label.getAttribute('data-mid'));
+				const name = label.querySelector('input').value.trim();
+				const isChecked = label.querySelector('input').checked;
+
+				// 現在の中分類かつ、(表示レシピに含まれる OR すでにチェック済み)
+				if (mid === currentMidNum) {
+					if (isChecked || reachableMaterials.includes(name)) {
+						const slideDiv = document.createElement('div');
+						slideDiv.className = 'swiper-slide';
+						slideDiv.style.width = 'auto';
+						slideDiv.appendChild(label); // 移動（これでstorageからは自動的に消える）
+						container.appendChild(slideDiv);
+						label.style.display = 'inline-block';
+					}
+				}
+			});
+
+			// 4. Swiperの初期化または更新
+			if (!materialSwiper) {
+				materialSwiper = new Swiper(".materialSwiper", {
+					slidesPerView: "auto",
+					spaceBetween: 10,
+					freeMode: true
+				});
+			} else {
+				materialSwiper.update();
+				materialSwiper.slideTo(0);
+			}
 		}
 	</script>
 </body>

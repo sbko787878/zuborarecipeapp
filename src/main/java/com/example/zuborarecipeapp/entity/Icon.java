@@ -7,5 +7,6 @@ public class Icon {
     private Integer id;       // DBのicons.id
     private String iconName;  // DBのicons.icon_name
     private String iconPath;  // DBのicons.icon_path
+    private Integer middleCategory;	// DBのicons.middle_category
     private String targetCategory;
 }

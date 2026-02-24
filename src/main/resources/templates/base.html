@@ -62,13 +62,13 @@
 					<a th:href="@{'/recipeList/' + ${recipe.id}}">
 						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
 					</a>
-					<div class="recipe-iconList">
+					<!-- <div class="recipe-iconList">
 						<div th:each="icon : ${recipe.iconList}" class="recipe-icon-item">
 							<img th:src="@{'/data/icon/'+${icon.iconPath}}" th:title="${icon.iconName}"
 								th:alt="${icon.iconName}" class="recipe-icon">
 							<span class="recipe-icon-name" th:text="${icon.iconName}"></span>
 						</div>
-					</div>
+					</div> -->
 					<!-- レシピ名 -->
 					<!-- <h2 class="recipe-title" th:text="${recipe.name}"> -->
 					<h2 class="recipe-title" th:utext="${recipe.name}">

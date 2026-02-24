@@ -32,7 +32,7 @@
 			</div>
 
 			<div id="materialWrapper" style="display: none; margin-top: 15px;">
-				<p style="font-size: 0.8rem; color: #666;">材料を選んでチェックをタップ！</p>
+				<p style="font-size: 0.8rem; color: #666;text-align: center;">材料を選んでチェックをタップ！</p>
 				<div class="material-grid">
 					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label">
 						<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"

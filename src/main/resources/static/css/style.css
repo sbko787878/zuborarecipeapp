@@ -266,6 +266,23 @@ body {
 	padding: 10px;
 }
 
+/* 材料スライダー全体の高さを制限 */
+.materialSwiper {
+	height: 80px !important;
+	/* アイコンと名前が収まる高さに固定 */
+	min-height: 80px !important;
+	overflow: hidden;
+}
+
+/* スライドの中身が縦に伸びないようにする */
+.materialSwiper .swiper-slide {
+	height: 100% !important;
+	display: flex;
+	align-items: center;
+	/* 上下中央 */
+	width: auto !important;
+}
+
 .icon-checkbox-label {
 	margin: 5px;
 }
@@ -279,30 +296,30 @@ body {
 }
 
 .category-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 4px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	gap: 4px;
 }
 
 .cat-btn img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 /* .cat-btn { */
-    /* display: flex; */
-    /* overflow-x: auto; 横スクロール */
-    /* flex-direction: column; */
-	/* align-items: center;
+/* display: flex; */
+/* overflow-x: auto; 横スクロール */
+/* flex-direction: column; */
+/* align-items: center;
     gap: 4px;
     padding: 10px;
     justify-content: flex-start */
-	/* display: flex;
+/* display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: 4px;

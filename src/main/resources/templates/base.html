@@ -74,6 +74,18 @@
 		<div class="swiper-pagination"></div>
 	</div>
 
+	<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // すでに表示済みならスプラッシュを消す
+    if (sessionStorage.getItem("splashShown")) {
+      document.getElementById("splash").style.display = "none";
+      return;
+    }
+    // 「表示済み」を記録
+    sessionStorage.setItem("splashShown", "true");
+  });
+</script>
+
 	<script th:inline="javascript">
 		var swiper = new Swiper(".mySwiper", {
 			direction: "vertical",

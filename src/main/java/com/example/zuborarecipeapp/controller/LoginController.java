@@ -1,35 +1,31 @@
 package com.example.zuborarecipeapp.controller;
-
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.zuborarecipeapp.form.LoginForm;
-import com.example.zuborarecipeapp.repository.UserMapper;
+import com.example.zuborarecipeapp.service.AdminUserService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
+@RequiredArgsConstructor
 public class LoginController {
+	private final AdminUserService service;
 
-    private final UserMapper userMapper;
-
-    public LoginController(UserMapper userMapper) {
-        this.userMapper = userMapper;
+    @PostMapping("/login")
+    public String login(
+    		@RequestParam String name,
+    		@RequestParam String pass) {
+    	service.search(name,pass);
+    	if(service.search(name,pass) == null) {
+    		return "login";
+    	}
+        return "loginComp"; // login.html を表示
     }
 
     @GetMapping("/login")
-    public String getLogin(Model model) {
-        model.addAttribute("loginForm", new LoginForm());
-        return "login";
-    }
-
-    @PostMapping("/login")
-    public String postLogin(LoginForm form, Model model) {
-        if (userMapper.findUser(form) > 0) {
-            return "redirect:/home"; // ログイン成功
-        } else {
-            model.addAttribute("error", "IDまたはパスワードが違います");
-            return "login"; // ログイン失敗
-        }
+    public String loginComp() {
+        return "login"; // loginComp.html を表示
     }
 }

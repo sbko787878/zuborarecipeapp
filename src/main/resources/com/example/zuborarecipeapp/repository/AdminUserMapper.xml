@@ -4,7 +4,7 @@
 <mapper namespace="com.example.zuborarecipeapp.repository.AdminUserMapper">
 
     <select id="findByUsername" resultType="com.example.zuborarecipeapp.entity.AdminUser">
-        SELECT * FROM admin_users WHERE username = #{username}
+        SELECT * FROM admin WHERE name = #{username} and pass = #{pass}
     </select>
 
 </mapper>

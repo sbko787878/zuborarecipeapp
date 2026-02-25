@@ -3,10 +3,14 @@ package com.example.zuborarecipeapp.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import jakarta.servlet.http.HttpSession;
+
 @Controller
 public class LogoutController {
 	@GetMapping("/logout")
-	public String logout() {
-		return "login";
+	public String logout(HttpSession session) {
+		// セッションを無効にする（中身を全部消す）
+	    session.invalidate();
+	    return "redirect:/login";
 	}
 }

@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>ログイン</title>
-</head>
-<body>
-    <h2>ログイン画面</h2>
-    
-    <div th:if="${param.error}" style="color: red;">
-        ユーザー名またはパスワードが正しくありません。
-    </div>
 
-    <form th:action="@{/login}" method="post">
-        <div>
-            <label>ユーザー名: </label>
-            <input type="text" name="name" required>
-        </div>
-        <div>
-            <label>パスワード: </label>
-            <input type="password" name="pass" required>
-        </div>
-        <button type="submit">ログイン</button>
-    </form>
+<head>
+	<meta charset="UTF-8">
+	<title>ログイン</title>
+</head>
+
+<body>
+	<h2>ログイン画面</h2>
+
+	<div th:if="${param.error}" style="color: red;">
+		ユーザー名またはパスワードが正しくありません。
+	</div>
+
+	<form th:action="@{/login}" method="post">
+		<div>
+			<label for="name">ユーザー名: </label>
+			<input type="text" name="name" id="name" required>
+		</div>
+		<div>
+			<label for="pass">パスワード: </label>
+			<input type="password" name="pass" id="pass" required>
+		</div>
+		<button type="submit">ログイン</button>
+	</form>
 </body>
+
 </html>

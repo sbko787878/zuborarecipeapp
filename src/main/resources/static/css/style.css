@@ -38,10 +38,8 @@ body {
 /* カテゴリーボタンのスタイル */
 .cat-btn {
 	display: inline-block;
-	padding: 10px 15px;
+	padding: 10px 10px;
 	border-radius: 20px;
-	cursor: pointer;
-	transition: 0.3s;
 }
 
 /* 選択された時のスタイル（例：枠線をつける） */
@@ -333,8 +331,6 @@ body {
 	flex-direction: column;
 	align-items: center;
 	cursor: pointer;
-	overflow: hidden;
-	border-radius: 50%;
 
 }
 
@@ -364,6 +360,53 @@ body {
 	/* 大分類アイコンも選択時に濃くする場合 */
 	opacity: 1;
 	border-radius: 50%;
+}
+
+/* ラジオボタン自体は隠す */
+.mid-cat-radio {
+	display: none;
+}
+
+/* ボタンの土台（丸） */
+.mid-cat-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 60px;
+	/* 大分類より一回り小さく設定 */
+	height: 60px;
+	border-radius: 50%;
+	background: #f0f0f0;
+	border: 2px solid #ddd;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+/* アイコン画像 */
+.mid-cat-btn img {
+	width: 30px;
+	height: 30px;
+	object-fit: contain;
+}
+
+/* ボタン下のテキスト（肉/魚など） */
+.mid-cat-btn small {
+	font-size: 0.6rem;
+	color: #666;
+	margin-top: 2px;
+}
+
+/* 選択された時の色変更（パスタのオレンジに合わせる場合） */
+.mid-cat-radio:checked+.mid-cat-btn {
+	background: #fff3e0;
+	border-color: #ff9800;
+	box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+}
+
+.mid-cat-radio:checked+.mid-cat-btn small {
+	color: #ff9800;
+	font-weight: bold;
 }
 
 /* 材料アイコンと名前を縦に並べる */

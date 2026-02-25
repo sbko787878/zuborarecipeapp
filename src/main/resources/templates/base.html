@@ -30,16 +30,38 @@
 				</label>
 			</div>
 
-			<div id="materialWrapper" style="display: none; margin-top: 15px;">
+			<div id="materialWrapper" style="display: none; margin-top: 10px;">
 				<div class="middle-category-selector"
-					style="display: flex; justify-content: center; gap: 8px; margin-bottom: 10px;">
-					<button type="button" class="mid-cat-btn active"
-						onclick="changeMiddleCategory(1, this)">肉/魚</button>
-					<button type="button" class="mid-cat-btn" onclick="changeMiddleCategory(2, this)">野菜/きのこ</button>
-					<button type="button" class="mid-cat-btn" onclick="changeMiddleCategory(3, this)">調味料/その他</button>
+					style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+					<label class="mid-cat-label">
+						<input type="radio" name="mid_category" value="1" class="mid-cat-radio" checked
+							onclick="changeMiddleCategory(1, this)">
+						<span class="mid-cat-btn">
+							<img th:src="@{/data/icon/mid_meat.png}" alt="肉魚">
+							<small>肉/魚</small>
+						</span>
+					</label>
+
+					<label class="mid-cat-label">
+						<input type="radio" name="mid_category" value="2" class="mid-cat-radio"
+							onclick="changeMiddleCategory(2, this)">
+						<span class="mid-cat-btn">
+							<img th:src="@{/data/icon/mid_vege.png}" alt="野菜">
+							<small>野菜</small>
+						</span>
+					</label>
+
+					<label class="mid-cat-label">
+						<input type="radio" name="mid_category" value="3" class="mid-cat-radio"
+							onclick="changeMiddleCategory(3, this)">
+						<span class="mid-cat-btn">
+							<img th:src="@{/data/icon/mid_other.png}" alt="その他">
+							<small>その他</small>
+						</span>
+					</label>
 				</div>
 
-				<p style="font-size: 0.7rem; color: #666; text-align: center; margin-bottom: 10px;">材料を選んでチェック！</p>
+				<p style="font-size: 0.7rem; color: #666; text-align: center; margin-bottom: 5px;">材料を選んでチェック！</p>
 
 				<div id="allIconsStorage" style="display: none;">
 					<label th:each="icon : ${session.allIconList}" class="icon-checkbox-label"
@@ -157,14 +179,12 @@
 		}
 
 		// ★新規追加：中分類ボタン（肉/魚など）が押された時の処理
-		function changeMiddleCategory(midNum, btnElement) {
+		function changeMiddleCategory(midNum, radioElement) {
 			currentMidNum = midNum;
 
-			// ボタンの見た目（active）を切り替え
-			document.querySelectorAll('.mid-cat-btn').forEach(btn => btn.classList.remove('active'));
-			btnElement.classList.add('active');
+			// ラジオボタンを使っているので、クラスの付け替え（btn.classList.remove('active')）は不要になる。
+			// CSSの :checked セレクタが自動的に見た目を変えてくれるため。
 
-			// スライドを再描画
 			renderMaterialSwiper();
 		}
 

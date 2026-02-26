@@ -391,11 +391,11 @@ body {
 }
 
 /* ボタン下のテキスト（肉/魚など） */
-.mid-cat-btn small {
-	font-size: 0.6rem;
-	color: #666;
-	margin-top: 2px;
-}
+/*.mid-cat-btn small {*/
+/*	font-size: 0.6rem;*/
+/*	color: #666;*/
+/*	margin-top: 2px;*/
+/*}*/
 
 /* 選択された時の色変更（パスタのオレンジに合わせる場合） */
 .mid-cat-radio:checked+.mid-cat-btn {

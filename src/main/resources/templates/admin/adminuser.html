@@ -12,8 +12,8 @@
 
 	<form th:action="@{/logout}" method="post" style="display: inline;">
 		<button type="submit">ログアウト</button>
-		<a href="/admin/recipes/new">新規登録</a>
 	</form>
+	<a th:href="@{/admin/recipes/new}" style="margin-left: 10px;">新規登録</a>
 	<div id="table">
 		<table style="margin-top: 15px" border="1">
 			<tr>
@@ -29,10 +29,14 @@
 				<td th:text="${r.category}"></td>
 				<td>
 					<a th:href="@{'/admin/recipes/edit/' + ${r.id}}">編集</a>
-					<a th:href="@{'/admin/recipes/delete/' + ${r.id}}" onclick="return confirm('本当に削除しますか？');">削除</a>
+
+					<form th:action="@{'/admin/recipes/delete/' + ${r.id}}" method="post"
+						style="display: inline; margin-left: 10px;">
+						<button type="submit" onclick="return confirm('本当に削除しますか？');">削除</button>
+					</form>
 				</td>
 			</tr>
-			</table>
+		</table>
 	</div>
 </body>
 

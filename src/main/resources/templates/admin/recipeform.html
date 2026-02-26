@@ -80,7 +80,7 @@
 
         <h1 th:text="${recipe.id == null} ? '新規レシピ登録' : 'レシピ編集'"></h1>
 
-        <form action="/admin/recipes/save" method="post">
+        <form th:action="@{/admin/recipes/save}" method="post">
 
             <input type="hidden" name="id" th:value="${recipe.id}">
 
@@ -105,7 +105,7 @@
 
         </form>
 
-        <a class="back-link" href="/admin/recipes">← 一覧に戻る</a>
+        <a class="back-link" th:href="@{/admin/recipes}">← 一覧に戻る</a>
 
     </div>
 

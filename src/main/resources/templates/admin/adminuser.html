@@ -2,34 +2,38 @@
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
 </head>
 
 <body>
-    <h1>レシピ管理ページ</h1>
+	<h1>レシピ管理ページ</h1>
 
-    <a href="/admin/recipes/new">新規登録</a>
+	<form th:action="@{/logout}" method="post" style="display: inline;">
+		<button type="submit">ログアウト</button>
+		<a href="/admin/recipes/new">新規登録</a>
+	</form>
+	<div id="table">
+		<table style="margin-top: 15px" border="1">
+			<tr>
+				<th>ID</th>
+				<th>名前</th>
+				<th>カテゴリ</th>
+				<th>操作</th>
+			</tr>
 
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>名前</th>
-            <th>カテゴリ</th>
-            <th>操作</th>
-        </tr>
-
-        <tr th:each="r : ${recipes}">
-            <td th:text="${r.id}"></td>
-            <td th:text="${r.name}"></td>
-            <td th:text="${r.category}"></td>
-            <td>
-                <a th:href="@{'/admin/recipes/edit/' + ${r.id}}">編集</a>
-                <a th:href="@{'/admin/recipes/delete/' + ${r.id}}" onclick="return confirm('本当に削除しますか？');">削除</a>
-            </td>
-        </tr>
-    </table>
+			<tr th:each="r : ${recipes}">
+				<td th:text="${r.id}"></td>
+				<td th:text="${r.name}"></td>
+				<td th:text="${r.category}"></td>
+				<td>
+					<a th:href="@{'/admin/recipes/edit/' + ${r.id}}">編集</a>
+					<a th:href="@{'/admin/recipes/delete/' + ${r.id}}" onclick="return confirm('本当に削除しますか？');">削除</a>
+				</td>
+			</tr>
+			</table>
+	</div>
 </body>
 
 </html>

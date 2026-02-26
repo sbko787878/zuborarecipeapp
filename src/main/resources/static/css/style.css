@@ -1,312 +1,303 @@
 body {
-	margin: 0;
-	padding: 0;
-	background: #f7f7f7;
-	font-family: "Helvetica Neue", Arial, sans-serif;
-	font-family: "M PLUS Rounded 1c", sans-serif;
-	font-weight: 400;
-	font-style: normal;
+    margin: 0;
+    padding: 0;
+    background: #f7f7f7;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    font-family: "M PLUS Rounded 1c", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 
 /* /base.html の中央寄せコンテナ */
 .base-container {
-	padding: 20px 0;
-	display: flex;
-	justify-content: center;
+    padding: 20px 0;
+    display: flex;
+    justify-content: center;
 }
 
 /* カード全体 */
 .recipe-card {
-	background: #fff;
-	width: 100%;
-	height: 100%;
-	max-width: 420px;
-	padding: 10px 10px 10px 10px;
-	border-radius: 20px;
-	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-	text-align: center;
-	margin: 0 auto;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    max-width: 420px;
+    padding: 10px 10px 10px 10px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    margin: 0 auto;
 }
 
 /* ラジオボタンとチェックボックス本体は隠す */
 .cat-radio,
 .hidden-checkbox {
-	display: none;
+    display: none;
 }
 
 /* カテゴリーボタンのスタイル */
-.cat-btn {
+/* .cat-btn {
 	display: inline-block;
 	padding: 10px 10px;
 	border-radius: 20px;
-}
+} */
 
 /* 選択された時のスタイル（例：枠線をつける） */
-.cat-radio:checked+.cat-btn {
-	border-color: #ff9900;
-	/* オレンジ色の枠線 */
-	background-color: rgba(255, 153, 0, 0.1);
-}
+/* .cat-radio:checked+.cat-btn {
+	border-color: #ff9900; */
+/* オレンジ色の枠線 */
+/* background-color: rgba(255, 153, 0, 0.1);
+} */
 
-/* アイコン画像自体のサイズと切り抜き設定 */
-.cat-btn img {
+
+/* .cat-btn img {
 	width: 85px;
-	/* 白枠を消すために少しサイズを調整 */
 	height: 85px;
 	object-fit: cover;
-	/* 枠いっぱいに広げて余白をカット */
 	border-radius: 50%;
-	/* 正円で切り抜く */
 	border: none;
-	/* もし枠線があれば削除 */
-
-	/* ズームして外側の白枠を外に追い出す設定 */
 	transform: scale(1.2);
 	transition: transform 0.2s;
-}
+} */
 
 /* 材料アイコンのスタイル */
-.selectable-icon {
+/* .selectable-icon {
 	width: 45px;
 	height: 45px;
-	filter: grayscale(100%);
-	/* 未選択は白黒 */
-	opacity: 0.4;
+	filter: grayscale(100%); */
+/* 未選択は白黒 */
+/* opacity: 0.4;
 	cursor: pointer;
 	transition: 0.3s;
 	border: 2px solid transparent;
-}
+} */
 
 /* 材料アイコン選択時 */
-.hidden-checkbox:checked+.selectable-icon {
+/* .hidden-checkbox:checked+.selectable-icon {
 	filter: none;
-	/* カラーにする */
 	opacity: 1;
 	border: 2px solid #ff9900;
 	border-radius: 8px;
 	transform: scale(1.1);
-}
+} */
 
 /* レシピ画像 */
 .recipe-image {
-	width: 90vw;
-	height: 100vw;
-	object-fit: cover;
-	border-radius: 16px;
+    width: 90vw;
+    height: 100vw;
 }
 
 
 /* タイトル */
 .recipe-title {
-	font-size: 1.8rem;
-	font-weight: 700;
-	margin-top: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 20px;
 }
 
 /* セクションタイトル（材料・作り方） */
 .section-title {
-	text-align: left;
-	font-size: 1.3rem;
-	font-weight: 600;
-	margin-top: 25px;
-	margin-bottom: 10px;
-	border-left: 4px solid #ff8c42;
-	padding-left: 8px;
+    text-align: left;
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 25px;
+    margin-bottom: 10px;
+    border-left: 4px solid #ff8c42;
+    padding-left: 8px;
 }
 
 /* 材料リスト */
 .material-list {
-	text-align: left;
-	padding-left: 20px;
-	line-height: 1.6;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 1.6;
 }
 
 /* 作り方リスト */
 .steps-list {
-	text-align: left;
-	padding-left: 20px;
-	line-height: 1.6;
+    text-align: left;
+    padding-left: 20px;
+    line-height: 1.6;
 }
 
 /* 戻るボタン */
 .back-btn-area {
-	margin-top: 30px;
+    margin-top: 30px;
 }
 
 .back-btn {
-	display: inline-block;
-	padding: 10px 20px;
-	background: #ddd;
-	border-radius: 10px;
-	text-decoration: none;
-	color: #333;
-	font-weight: 600;
+    display: inline-block;
+    padding: 10px 20px;
+    background: #ddd;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
 }
 
 /* スプラッシュ画面全体 */
 #splash {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: #fff;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	z-index: 9999;
-	animation: fadeOut 2.5s ease forwards;
-	animation-delay: 2.0s;
-	/* 表示してから消えるまでの時間 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 2.5s ease forwards;
+    animation-delay: 2.0s;
+    /* 表示してから消えるまでの時間 */
 }
 
 /* アプリ名の文字 */
 .splash-title {
-	margin: 0;
-	font-size: 2.5rem;
-	font-weight: 700;
-	letter-spacing: 0.05em;
-	opacity: 0;
-	animation: fadeIn 1.5s ease forwards;
-	background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
-	background-clip: text;
-	-webkit-background-clip: text;
-	/* Safari対策 */
-	color: transparent;
-	/* 文字色を透明にする */
-	font-family: 'Zen Kaku Gothic New', sans-serif;
+    margin: 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    opacity: 0;
+    animation: fadeIn 1.5s ease forwards;
+    background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    /* Safari対策 */
+    color: transparent;
+    /* 文字色を透明にする */
+    font-family: 'Zen Kaku Gothic New', sans-serif;
 
 }
 
 /* ふわっと表示 */
 @keyframes fadeIn {
-	0% {
-		opacity: 0;
-		transform: scale(0.9);
-	}
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
 
-	100% {
-		opacity: 1;
-		transform: scale(1);
-	}
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* ふわっと消える */
 @keyframes fadeOut {
-	0% {
-		opacity: 1;
-	}
+    0% {
+        opacity: 1;
+    }
 
-	100% {
-		opacity: 0;
-		visibility: hidden;
-	}
+    100% {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
 
 .recipe-title,
 .material-title,
 .section-title {
-	white-space: pre-wrap;
+    white-space: pre-wrap;
 }
 
 
 
 .recipe-image {
-	width: 400px;
-	height: 400px;
-	object-fit: cover;
+    width: 400px;
+    height: 400px;
+    /* object-fit: cover; */
 }
 
 @media screen and (max-width: 640px) {
-	.recipe-image {
-		width: 90vw;
-		height: 90vw;
-	}
+    .recipe-image {
+        width: 90vw;
+        height: 90vw;
+    }
 }
 
 /* アイコン画像自体のサイズ調整 */
 .recipe-icon {
-	width: 40px;
-	height: 40px;
-	object-fit: contain;
-	/* 画像を歪ませない */
-	margin-bottom: 4px;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    /* 画像を歪ませない */
+    margin-bottom: 4px;
 }
 
 /* アイコンリスト全体の並び */
 .recipe-iconList {
-	display: flex;
-	justify-content: center;
-	/* 中央に寄せる */
-	flex-wrap: wrap;
-	/* 数が多い時に折り返す */
-	gap: 10px;
-	/* アイコン同士の間隔 */
-	margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    /* 中央に寄せる */
+    flex-wrap: wrap;
+    /* 数が多い時に折り返す */
+    gap: 10px;
+    /* アイコン同士の間隔 */
+    margin-top: 10px;
 }
 
 .detailRecipe-iconList {
-	width: 100%;
-	height: auto;
-	object-fit: cover;
-	border-radius: 16px;
-	display: flex;
-	gap: 14px;
-	justify-content: center
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 16px;
+    display: flex;
+    gap: 14px;
+    justify-content: center
 }
 
 .material-grid {
-	display: flex;
-	flex-wrap: wrap;
-	gap: 10px;
-	justify-content: center;
-	padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    padding: 10px;
 }
 
 /* 材料スライダー全体の高さを制限 */
 .materialSwiper {
-	height: 80px !important;
-	/* アイコンと名前が収まる高さに固定 */
-	min-height: 80px !important;
-	overflow: hidden;
+    height: 80px !important;
+    /* アイコンと名前が収まる高さに固定 */
+    min-height: 80px !important;
+    overflow: hidden;
 }
 
 /* スライドの中身が縦に伸びないようにする */
 .materialSwiper .swiper-slide {
-	height: 100% !important;
-	display: flex;
-	align-items: center;
-	/* 上下中央 */
-	width: auto !important;
+    height: 100% !important;
+    display: flex;
+    align-items: center;
+    /* 上下中央 */
+    width: auto !important;
 }
 
 .icon-checkbox-label {
-	margin: 5px;
+    margin: 5px;
 }
 
 /* カテゴリーアイコンのスタイル */
 .category-icon {
-	width: 40px;
-	height: 40px;
-	object-fit: contain;
-	border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 .category-grid {
-	display: flex;
-	flex-wrap: nowrap;
-	justify-content: space-between;
-	align-items: center;
-	width: 100%;
-	gap: 4px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 4px;
 }
 
 .cat-btn img {
-	width: 50px;
-	height: 50px;
-	border-radius: 50%;
-	object-fit: cover;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 /* .cat-btn { */
@@ -326,134 +317,225 @@ body {
 
 
 .cat-label {
-	flex: 0 0 15%;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	cursor: pointer;
+    flex: 0 0 15%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
 
 }
 
 /* ホバー時はさらに少し大きく */
 .cat-btn img:hover {
-	transform: scale(1.3);
-	border-radius: 50%;
+    transform: scale(1.3);
+    border-radius: 50%;
 }
 
 /* ラジオボタンは隠す */
 .cat-radio {
-	display: none;
+    display: none;
 }
 
 /* 選択された時のエフェクトを「外枠」ではなく「中の円」に合わせる */
 .cat-radio:checked+.cat-btn img {
-	filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.8));
-	border: 3px solid #ffa500;
-	/* 選択時のボーダーを内側に寄せる（白枠を見せないため） */
-	box-sizing: border-box;
-	border-radius: 50%;
+    filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.8));
+    border: 3px solid #ffa500;
+    /* 選択時のボーダーを内側に寄せる（白枠を見せないため） */
+    box-sizing: border-box;
+    border-radius: 50%;
 }
 
 /* カテゴリーアイコン（大分類）選択時の色の変化 */
 .cat-radio:checked+.cat-btn .category-icon {
-	filter: brightness(0.2);
-	/* 大分類アイコンも選択時に濃くする場合 */
-	opacity: 1;
-	border-radius: 50%;
+    filter: brightness(0.2);
+    /* 大分類アイコンも選択時に濃くする場合 */
+    opacity: 1;
+    border-radius: 50%;
 }
 
 /* ラジオボタン自体は隠す */
 .mid-cat-radio {
-	display: none;
+    display: none;
 }
 
 /* ボタンの土台（丸） */
 .mid-cat-btn {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	width: 60px;
-	/* 大分類より一回り小さく設定 */
-	height: 60px;
-	border-radius: 50%;
-	background: #f0f0f0;
-	border: 2px solid #ddd;
-	transition: all 0.3s ease;
-	cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    /* 大分類より一回り小さく設定 */
+    height: 60px;
+    border-radius: 50%;
+    background: #f0f0f0;
+    border: 2px solid #ddd;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 
 /* アイコン画像 */
 .mid-cat-btn img {
-	width: 30px;
-	height: 30px;
-	object-fit: contain;
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
 }
 
 /* ボタン下のテキスト（肉/魚など） */
 .mid-cat-btn small {
-	font-size: 0.6rem;
-	color: #666;
-	margin-top: 2px;
+    font-size: 0.6rem;
+    color: #666;
+    margin-top: 2px;
 }
 
 /* 選択された時の色変更（パスタのオレンジに合わせる場合） */
 .mid-cat-radio:checked+.mid-cat-btn {
-	background: #fff3e0;
-	border-color: #ff9800;
-	box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+    background: #fff3e0;
+    border-color: #ff9800;
+    box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
 }
 
 .mid-cat-radio:checked+.mid-cat-btn small {
-	color: #ff9800;
-	font-weight: bold;
+    color: #ff9800;
+    font-weight: bold;
 }
 
 /* 材料アイコンと名前を縦に並べる */
 .icon-checkbox-label {
-	text-align: center;
-	cursor: pointer;
+    text-align: center;
+    cursor: pointer;
 }
 
 .icon-content {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 5px;
-	border-radius: 8px;
-	transition: background 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border-radius: 8px;
+    transition: background 0.3s;
 }
 
 .icon-name {
-	font-size: 0.7rem;
-	color: #333;
-	margin-top: 4px;
-	word-break: break-all;
+    font-size: 0.7rem;
+    color: #333;
+    margin-top: 4px;
+    word-break: break-all;
 }
 
 /* 名前（ラベル）も選択時に太くする */
 .hidden-checkbox:checked+.icon-content .icon-name {
-	color: #000;
-	font-weight: bold;
+    color: #000;
+    font-weight: bold;
 }
 
 /* 選択された（チェックが入った）状態のアイコン */
 .hidden-checkbox:checked+.icon-content .selectable-icon {
-	/* 1. モノクロにする 2. コントラストを最大にして線をハッキリさせる */
-	filter: grayscale(100%) contrast(200%) brightness(0.5);
-	opacity: 1;
-	transform: scale(1.1);
+    /* 1. モノクロにする 2. コントラストを最大にして線をハッキリさせる */
+    filter: grayscale(100%) contrast(200%) brightness(0.5);
+    opacity: 1;
+    transform: scale(1.1);
 }
 
 /* 未選択の状態：グレーで薄い */
 .selectable-icon {
-	width: 50px;
-	height: 50px;
-	object-fit: contain;
-	filter: grayscale(100%) brightness(0.8);
-	/* 少し暗めのグレー */
-	opacity: 0.3;
-	/* さらに薄くして、未選択感を強調 */
-	transition: all 0.3s ease;
-	cursor: pointer;
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    filter: grayscale(100%) brightness(0.8);
+    /* 少し暗めのグレー */
+    opacity: 0.3;
+    /* さらに薄くして、未選択感を強調 */
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.video-container {
+    width: 100%;
+    height: 100%;
+    /* margin: 0 auto; */
+    z-index: 2;
+    position: fixed;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    border-radius: 12px;
+    box-shadow: 0;
+}
+
+.modal {
+    display: none;
+    /* 最初は非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    width: 90%;
+    max-width: 600px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 99999;
+}
+
+/* .tutorial-button {
+    display: block;
+    margin: 20px auto; 
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+} */
+
+.tutorial-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    font-size: 18px;
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 9999;
+}
+.search-navigation{
+    /* position: fixed;
+    z-index: 2; */
+    grid-column: 1/2;
+    grid-row:1/2;
+    padding:10px 10px 0 ;
+}
+
+.square{
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 30vh 70vh;
+}
+
+#swiper{
+    grid-column: 1/2;
+    grid-row: 2/3;
 }

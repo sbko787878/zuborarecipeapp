@@ -68,6 +68,7 @@
 	display: block;
 	flex-shrink: 0;
 	height: 100%;
+	margin-bottom: 10px;
 	position: relative;
 	transition-property: transform;
 	width: 100%;

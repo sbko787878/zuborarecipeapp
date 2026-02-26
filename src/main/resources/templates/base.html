@@ -30,89 +30,91 @@
 	</div>
 
 
-<div class="square">
-	<div class="search-navigation">
-		<form th:action="@{/search}" method="get" id="searchForm">
-			<div class="category-grid">
-				<label class="cat-label" th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
-					<input type="radio" name="category" th:value="${stat.count}" class="cat-radio"
-						onclick="filterIcons(this.value)">
-					<span class="cat-btn">
-						<img th:src="@{'/data/icon/' + ${id} + '.png'}" th:alt="${id}">
-					</span>
-				</label>
-			</div>
-
-			<div id="materialWrapper" style="display: none; margin-top: 10px;">
-				<div class="middle-category-selector"
-					style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
-					<label class="mid-cat-label">
-						<input type="radio" name="mid_category" value="1" class="mid-cat-radio" checked
-							onclick="changeMiddleCategory(1, this)">
-						<span class="mid-cat-btn">
-							<img th:src="@{/data/icon/mid_meat.png}" alt="肉魚">
-<!--							<small>肉/魚</small>-->
-						</span>
-					</label>
-
-					<label class="mid-cat-label">
-						<input type="radio" name="mid_category" value="2" class="mid-cat-radio"
-							onclick="changeMiddleCategory(2, this)">
-						<span class="mid-cat-btn">
-							<img th:src="@{/data/icon/mid_vege.png}" alt="野菜">
-<!--							<small>野菜</small>-->
-						</span>
-					</label>
-
-					<label class="mid-cat-label">
-						<input type="radio" name="mid_category" value="3" class="mid-cat-radio"
-							onclick="changeMiddleCategory(3, this)">
-						<span class="mid-cat-btn">
-							<img th:src="@{/data/icon/mid_other.png}" alt="その他">
-<!--							<small>その他</small>-->
+	<div class="square">
+		<div class="search-navigation">
+			<form th:action="@{/search}" method="get" id="searchForm">
+				<div class="category-grid">
+					<label class="cat-label" th:each="id, stat : ${#strings.arraySplit('①,②,③,④,⑤', ',')}">
+						<input type="radio" name="category" th:value="${stat.count}" class="cat-radio"
+							onclick="filterIcons(this.value)">
+						<span class="cat-btn">
+							<img th:src="@{'/data/icon/' + ${id} + '.png'}" th:alt="${id}">
 						</span>
 					</label>
 				</div>
 
-				<p style="font-size: 0.7rem; color: #666; text-align: center; margin-bottom: 5px;">材料を選んでチェック！</p>
+				<div id="materialWrapper" style="display: none; margin-top: 10px;">
+					<div class="middle-category-selector"
+						style="display: flex; justify-content: center; gap: 10px; margin-bottom: 10px;">
+						<label class="mid-cat-label">
+							<input type="radio" name="mid_category" value="1" class="mid-cat-radio" checked
+								onclick="changeMiddleCategory(1, this)">
+							<span class="mid-cat-btn">
+								<img th:src="@{/data/icon/mid_meat.png}" alt="肉魚">
+								<!--							<small>肉/魚</small>-->
+							</span>
+						</label>
 
-				<div id="allIconsStorage" style="display: none;">
-					<label th:each="icon : ${allIconList}" class="icon-checkbox-label"
-						th:attr="data-mid=${icon.middleCategory}">
-						<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"
-							onchange="updateRecipeFilter()">
-						<div class="icon-content">
-							<img th:src="@{'/data/icon/' + ${icon.iconPath}}" class="selectable-icon">
-							<span class="icon-name" th:text="${icon.iconName}"></span>
-						</div>
-					</label>
-				</div>
+						<label class="mid-cat-label">
+							<input type="radio" name="mid_category" value="2" class="mid-cat-radio"
+								onclick="changeMiddleCategory(2, this)">
+							<span class="mid-cat-btn">
+								<img th:src="@{/data/icon/mid_vege.png}" alt="野菜">
+								<!--							<small>野菜</small>-->
+							</span>
+						</label>
 
-				<div class="swiper materialSwiper">
-					<div class="swiper-wrapper" id="materialSlideContainer"></div>
+						<label class="mid-cat-label">
+							<input type="radio" name="mid_category" value="3" class="mid-cat-radio"
+								onclick="changeMiddleCategory(3, this)">
+							<span class="mid-cat-btn">
+								<img th:src="@{/data/icon/mid_other.png}" alt="その他">
+								<!--							<small>その他</small>-->
+							</span>
+						</label>
+					</div>
+
+					<p style="font-size: 0.7rem; color: #666; text-align: center; margin-bottom: 5px;">材料を選んでチェック！</p>
+
+					
+
+					<div id="allIconsStorage" style="display: none;">
+						<label th:each="icon : ${allIconList}" class="icon-checkbox-label"
+							th:attr="data-mid=${icon.middleCategory}">
+							<input type="checkbox" name="iconNames" th:value="${icon.iconName}" class="hidden-checkbox"
+								onchange="updateRecipeFilter()">
+							<div class="icon-content">
+								<img th:src="@{'/data/icon/' + ${icon.iconPath}}" class="selectable-icon">
+								<span class="icon-name" th:text="${icon.iconName}"></span>
+							</div>
+						</label>
+					</div>
+
+					<div class="swiper materialSwiper">
+						<div class="swiper-wrapper" id="materialSlideContainer"></div>
+					</div>
 				</div>
-			</div>
-		</form>
-	</div>
-	<div class="swiper mySwiper" id="swiper">
-		<div class="swiper-wrapper">
-			<div class="swiper-slide" th:each="recipe : ${allRecipeList}"
-				th:attr="data-category=${recipe.category}, data-icons=${recipe.material}">
-				<div class="recipe-card">
-					<a th:href="@{'/recipeList/' + ${recipe.id}}">
-						<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
-					</a>
-					<h2 class="recipe-title" th:utext="${recipe.name}">レシピ名</h2>
-				</div>
-			</div>
+			</form>
 		</div>
-		<div class="swiper-pagination"></div>
+		<div class="swiper mySwiper" id="swiper">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide" th:each="recipe : ${allRecipeList}"
+					th:attr="data-category=${recipe.category}, data-icons=${recipe.material}">
+					<div class="recipe-card">
+						<a th:href="@{'/recipeList/' + ${recipe.id}}">
+							<img th:src="@{'/data/image/'+${recipe.imagePath}}" class="recipe-image" alt="レシピ画像">
+						</a>
+						<h2 class="recipe-title" th:utext="${recipe.name}">レシピ名</h2>
+					</div>
+				</div>
+			</div>
+			<div class="swiper-pagination"></div>
+		</div>
 	</div>
-</div>
 
 	<script>
 		const modal = document.querySelector('.video-container');
-		const btn   = document.getElementById('tutorialBtn');
+		const btn = document.getElementById('tutorialBtn');
 		const close = document.getElementById('closeModal');
 		const video = document.getElementById('myVideo');
 
@@ -167,7 +169,7 @@
 			direction: "vertical",
 			slidesPerView: 1,
 			spaceBetween: 30,
-			pagination: { el: ".swiper-pagination", clickable: true },
+			pagination: {el: ".swiper-pagination", clickable: true},
 		});
 
 		let materialSwiper; // 中分類スライド用
@@ -208,7 +210,7 @@
 
 		function filterIcons(selectedCategory) {
 			// 1. 半角数字を丸数字に変換するマップ
-			const circleMap = { "1": "①", "2": "②", "3": "③", "4": "④", "5": "⑤" };
+			const circleMap = {"1": "①", "2": "②", "3": "③", "4": "④", "5": "⑤"};
 			const inputVal = selectedCategory.toString();
 			const circleVal = circleMap[inputVal] || inputVal;
 
@@ -300,12 +302,15 @@
 			if (!materialSwiper) {
 				materialSwiper = new Swiper(".materialSwiper", {
 					slidesPerView: "auto",
-					spaceBetween: 10,
-					freeMode: true
+					freeMode: true,
+					nested: true,      // 親スライダー（縦）との干渉を防ぐ
+					autoHeight: false, // 高さを自動調整させない
+					scrollbar: {
+						el: '.swiper-scrollbar',
+						hide: false,   // バーを常に表示
+						draggable: true
+					},
 				});
-			} else {
-				materialSwiper.update();
-				materialSwiper.slideTo(0);
 			}
 		}
 	</script>

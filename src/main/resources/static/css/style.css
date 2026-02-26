@@ -22,7 +22,7 @@ body {
     width: 100%;
     height: 100%;
     max-width: 420px;
-    padding: 10px 10px 10px 10px;
+    padding-top: 10px;
     border-radius: 20px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     text-align: center;
@@ -255,21 +255,59 @@ body {
     padding: 10px;
 }
 
-/* 材料スライダー全体の高さを制限 */
+/*  親コンテナ：高さを広げ、はみ出しを確実にスクロールさせる */
 .materialSwiper {
-    height: 80px !important;
-    /* アイコンと名前が収まる高さに固定 */
-    min-height: 80px !important;
-    overflow: hidden;
+    height: 100%;
+    overflow-x: scroll !important; /* autoではなくscrollで強制 */
+    overflow-y: hidden !important;
+    display: block !important;
+    position: relative !important;
+    z-index: 10 !important;        /* レシピ画像より前面に出す */
+    -webkit-overflow-scrolling: touch;
 }
 
 /* スライドの中身が縦に伸びないようにする */
+/*.materialSwiper .swiper-slide {*/
+/*    height: 100% !important;*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    width: 70px !important;  アイコンが等間隔で並ぶように幅を固定 */
+/*    flex-shrink: 0;          横幅が潰れないようにする */
+/*}*/
+
+/*  各アイコンスライド：高さを固定し、下のマージンを消去 */
 .materialSwiper .swiper-slide {
-    height: 100% !important;
-    display: flex;
+    width: 75px !important;
+    margin-bottom: 0 !important;    /* 画像のオレンジ色(Margin)を消す */
+    padding-bottom: 0 !important;   /* 紫色の斜線部分(Padding)を消す */
+    display: flex !important;
+    flex-direction: column;
     align-items: center;
-    /* 上下中央 */
-    width: auto !important;
+    flex-shrink: 0;
+}
+
+/*  Swiper内部の横長ラッパー：高さを親より低くして、突き抜けを防止 */
+.materialSwiper .swiper-wrapper {
+    display: flex !important;
+    align-items: flex-start !important; /* 上寄せにする */
+    width: max-content !important;
+}
+
+/* スクロールバーが消されるのを防ぐ */
+.materialSwiper::-webkit-scrollbar {
+    height: 12px !important;
+    display: block !important;
+    background-color: #f0f0f0 !important;
+}
+
+.materialSwiper::-webkit-scrollbar-thumb {
+    background-color: #ff9800;  /* 目立つオレンジ */
+    border-radius: 10px;
+    border: 2px solid #fff;     /* 白い縁取りで埋もれ防止 */
+}
+
+.materialSwiper::-webkit-scrollbar-track {
+    background: #f0f0f0;        /* 背景を薄いグレーに */
 }
 
 .icon-checkbox-label {
@@ -376,9 +414,10 @@ body {
 
 /* アイコン画像 */
 .mid-cat-btn img {
-    width: 30px;
-    height: 30px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
+    border-radius: 50%;
 }
 
 /* ボタン下のテキスト（肉/魚など） */
@@ -406,20 +445,22 @@ body {
     cursor: pointer;
 }
 
+/*  アイコンの中身：余計な余白を徹底的に排除 */
 .icon-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 5px;
-    border-radius: 8px;
-    transition: background 0.3s;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: 100%;
 }
 
+/*  名前：下のマージンを0にする */
 .icon-name {
-    font-size: 0.7rem;
-    color: #333;
+    font-size: 0.6rem;
+    line-height: 1.2;
     margin-top: 4px;
-    word-break: break-all;
+    margin-bottom: 0 !important;
 }
 
 /* 名前（ラベル）も選択時に太くする */
@@ -532,10 +573,11 @@ video {
 .square{
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 30vh 70vh;
+    grid-template-rows: 34vh 66vh;
 }
 
 #swiper{
+	height: 66vh;
     grid-column: 1/2;
     grid-row: 2/3;
 }

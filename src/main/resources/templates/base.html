@@ -18,6 +18,19 @@
 		<h1 class="splash-title">HP5で出来る<br>レンチンごはん</h1>
 	</div>
 
+	<button id="tutorialBtn" class="tutorial-button">アプリの使い方</button>
+	<div class="video-container modal">
+		<div class="modal-content">
+			<span id="closeModal" class="close">&times;</span>
+			<video id="myVideo" autoplay muted>
+				<source th:src="@{/mp4/cyu-toriaru.mp4}" type="video/mp4">
+				動画を読み込みませんでした。
+			</video>
+		</div>
+	</div>
+
+
+<div class="square">
 	<div class="search-navigation">
 		<form th:action="@{/search}" method="get" id="searchForm">
 			<div class="category-grid">
@@ -81,7 +94,7 @@
 			</div>
 		</form>
 	</div>
-	<div class="swiper mySwiper">
+	<div class="swiper mySwiper" id="swiper">
 		<div class="swiper-wrapper">
 			<div class="swiper-slide" th:each="recipe : ${allRecipeList}"
 				th:attr="data-category=${recipe.category}, data-icons=${recipe.material}">
@@ -95,13 +108,66 @@
 		</div>
 		<div class="swiper-pagination"></div>
 	</div>
+</div>
+
+	<script>
+		const modal = document.querySelector('.video-container');
+		const btn   = document.getElementById('tutorialBtn');
+		const close = document.getElementById('closeModal');
+		const video = document.getElementById('myVideo');
+
+		// ボタンを押したらモーダルを開く
+		btn.addEventListener('click', () => {
+			modal.style.display = 'flex';
+			video.play();
+		});
+
+		// × を押したら閉じる
+		close.addEventListener('click', () => {
+			modal.style.display = 'none';
+			video.pause();
+			video.currentTime = 0;
+		});
+
+		// 動画が終わったら自動で閉じる
+		video.addEventListener('ended', () => {
+			modal.style.display = 'none';
+		});
+		// const video = document.getElementById('myVideo');
+		// const container = document.querySelector('.video-container');
+		// const btn = document.getElementById('tutorialBtn');
+
+		// btn.addEventListener('click', () => {
+		// 	container.style.display = 'block';
+		// 	video.play();
+		// });
+
+
+		// 再生が始まったら実行されるイベント
+		// video.addEventListener('ended', () => {
+		// 	container.style.display = 'none';
+		// });
+	</script>
+
+
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// すでに表示済みならスプラッシュを消す
+			if (sessionStorage.getItem("splashShown")) {
+				document.getElementById("splash").style.display = "none";
+				return;
+			}
+			// 「表示済み」を記録
+			sessionStorage.setItem("splashShown", "true");
+		});
+	</script>
 
 	<script th:inline="javascript">
 		var swiper = new Swiper(".mySwiper", {
 			direction: "vertical",
 			slidesPerView: 1,
 			spaceBetween: 30,
-			pagination: {el: ".swiper-pagination", clickable: true},
+			pagination: { el: ".swiper-pagination", clickable: true },
 		});
 
 		let materialSwiper; // 中分類スライド用
@@ -142,7 +208,7 @@
 
 		function filterIcons(selectedCategory) {
 			// 1. 半角数字を丸数字に変換するマップ
-			const circleMap = {"1": "①", "2": "②", "3": "③", "4": "④", "5": "⑤"};
+			const circleMap = { "1": "①", "2": "②", "3": "③", "4": "④", "5": "⑤" };
 			const inputVal = selectedCategory.toString();
 			const circleVal = circleMap[inputVal] || inputVal;
 

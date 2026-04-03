@@ -40,3 +40,7 @@ out/
 .env
 *.env
 application-local.properties
+
+### tar除外 ###
+zubora-app.tar
+*.tar

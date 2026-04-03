@@ -1,0 +1,13 @@
+.git
+.gitignore
+*.tar
+*.zip
+*.log
+bin/
+build/
+target/
+.gradle/
+.settings/
+.classpath
+.project
+node_modules/

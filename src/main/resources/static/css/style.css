@@ -754,83 +754,85 @@ body {
 		background: rgba(255, 0, 0, 0.7);
 		/* ホバーで赤くして目立たせる */
 	}
-	
+
 	/* --- 詳細画面（detail）の動的レイアウト調整 --- */
 
-	    /* コンテナ：画面中央に配置 */
-	    .detail-container {
-	        display: flex !important;
-	        align-items: center !important;
-	        justify-content: center !important;
-	        min-height: 100vh !important;
-	        padding: 0 !important;
-	    }
+	/* コンテナ：画面中央に配置 */
+	.detail-container {
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+		min-height: 100vh !important;
+		padding: 0 !important;
+	}
 
-	    /* カード全体：Gridで左右に分割 */
-	    .detail-container .recipe-card {
-	        display: grid !important;
-	        /* 左列を4割、右列を6割の比率で自動調整 */
-	        grid-template-columns: 4fr 6fr !important; 
-	        grid-template-rows: auto auto 1fr auto; /* タイトル、材料、作り方、ボタン */
-	        
-	        width: 95vw !important;
-	        max-width: 1200px !important;
-	        height: 85vh !important; /* 画面の高さ85%に収める */
-	        max-height: 900px;
-	        
-	        padding: 40px !important;
-	        gap: 0 50px; /* 左右の間隔だけ50px空ける */
-	        background: #ffffff !important;
-	        border-radius: 40px !important;
-	        text-align: left !important;
-	        overflow: hidden !important; /* はみ出し防止 */
-	    }
+	/* カード全体：Gridで左右に分割 */
+	.detail-container .recipe-card {
+		display: grid !important;
+		grid-template-columns: 4fr 6fr !important;
+		grid-template-rows: auto 1fr auto !important;
+		width: 95vw !important;
+		max-width: 1200px !important;
+		height: 85vh !important;
+		padding: 40px !important;
+		gap: 0 50px;
+		background: #ffffff !important;
+		border-radius: 40px !important;
+		overflow: hidden !important;
+		text-align: left !important;
+		/* 中央寄せではなく左寄せ */
+	}
 
-	    /* 画像：左側に固定し、枠いっぱいに高さを合わせる */
-	    .detail-container .recipe-image {
-	        grid-column: 1 / 2;
-	        grid-row: 1 / 5; /* 4行目まで全てぶち抜いて左側に配置 */
-	        
-	        width: 100% !important;
-	        height: 100% !important;
-	        max-height: 100% !important;
-	        object-fit: cover !important; /* 縦横比を保ちつつ枠を埋める */
-	        border-radius: 25px !important;
-	    }
+	/* 画像：左側に固定し、枠いっぱいに高さを合わせる */
+	.detail-container .recipe-image {
+		grid-column: 1 / 2;
+		grid-row: 1 / 5;
+		/* 4行目まで全てぶち抜いて左側に配置 */
 
-	    /* 右側の各テキスト要素を「右列（2列目）」に指定 */
-	    .detail-container .recipe-title {
-	        grid-column: 2 / 3;
-	        grid-row: 1 / 2;
-	        font-size: 1.5rem !important;
-	        margin: 0 0 20px 0 !important;
-	    }
+		width: 100% !important;
+		height: 100% !important;
+		max-height: 100% !important;
+		object-fit: cover !important;
+		/* 縦横比を保ちつつ枠を埋める */
+		border-radius: 25px !important;
+	}
 
-	    .detail-container .material-title {
-	        grid-column: 2 / 3;
-	        grid-row: 2 / 3;
-	        font-size: 1.2rem !important;
-	        margin-bottom: 20px !important;
-	        background: #fff9f0; /* 材料部分を少し強調 */
-	        padding: 15px !important;
-	        border-radius: 10px;
-	        white-space: pre-wrap !important; /* 改行を反映 */
-	    }
+	/* 右側の各テキスト要素を「右列（2列目）」に指定 */
+	.detail-container .recipe-title {
+		grid-column: 2 / 3;
+		grid-row: 1 / 2;
+		font-size: 1.5rem !important;
+		margin: 0 0 20px 0 !important;
+	}
 
-	    .detail-container .section-title {
-	        grid-column: 2 / 3;
-	        grid-row: 3 / 4;
-	        font-size: 1.1rem !important;
-	        overflow-y: auto !important; /* 作り方が長い場合はここだけスクロール */
-	        padding-right: 10px;
-	        white-space: pre-wrap !important; /* 改行を反映 */
-	    }
+	.detail-container .material-title {
+		grid-column: 2 / 3;
+		overflow-y: auto !important;
+		/* 縦に長い時はスクロール可能にする */
+		overflow-x: hidden !important;
+		/* 横方向の線は絶対に出さない */
+		max-height: 100%;
+		padding-right: 10px;
+		/* スクロールバー用の余白 */
+	}
 
-	    .detail-container .back-btn-area {
-	        grid-column: 2 / 3;
-	        grid-row: 4 / 5;
-	        margin-top: 20px !important;
-	        text-align: right !important; /* ボタンは右下に配置 */
-			font-size: 1.2rem !important;
-	    }
+	.detail-container .section-title {
+		grid-column: 2 / 3;
+		overflow-y: auto !important;
+		/* 縦に長い時はスクロール可能にする */
+		overflow-x: hidden !important;
+		/* 横方向の線は絶対に出さない */
+		max-height: 100%;
+		padding-right: 10px;
+		/* スクロールバー用の余白 */
+	}
+
+	.detail-container .back-btn-area {
+		grid-column: 2 / 3;
+		grid-row: 4 / 5;
+		margin-top: 20px !important;
+		text-align: right !important;
+		/* ボタンは右下に配置 */
+		font-size: 1.2rem !important;
+	}
 }

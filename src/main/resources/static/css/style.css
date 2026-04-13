@@ -1,38 +1,38 @@
 body {
-    margin: 0;
-    padding: 0;
-    background: #f7f7f7;
-    font-family: "Helvetica Neue", Arial, sans-serif;
-    font-family: "M PLUS Rounded 1c", sans-serif;
-    font-weight: 400;
-    font-style: normal;
+	margin: 0;
+	padding: 0;
+	background: #f7f7f7;
+	font-family: "Helvetica Neue", Arial, sans-serif;
+	font-family: "M PLUS Rounded 1c", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 
 /* /base.html の中央寄せコンテナ */
 .base-container {
-    padding: 20px 0;
-    display: flex;
-    justify-content: center;
+	padding: 20px 0;
+	display: flex;
+	justify-content: center;
 }
 
 /* カード全体 */
 .recipe-card {
-    background: #fff;
-    width: 100%;
-    height: 100%;
-    max-width: 420px;
-    padding-top: 10px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    text-align: center;
-    margin: 0 auto;
+	background: #fff;
+	width: 100%;
+	height: 100%;
+	max-width: 420px;
+	padding-top: 10px;
+	border-radius: 20px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	text-align: center;
+	margin: 0 auto;
 }
 
 /* ラジオボタンとチェックボックス本体は隠す */
 .cat-radio,
 .hidden-checkbox {
-    display: none;
+	display: none;
 }
 
 /* カテゴリーボタンのスタイル */
@@ -83,187 +83,189 @@ body {
 
 /* レシピ画像 */
 .recipe-image {
-    width: 90vw;
-    height: 100vw;
+	width: 90vw;
+	height: 100vw;
 }
 
 
 /* タイトル */
 .recipe-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    margin-top: 20px;
+	font-size: 1.8rem;
+	font-weight: 700;
+	margin-top: 20px;
 }
 
 /* セクションタイトル（材料・作り方） */
 .section-title {
-    text-align: left;
-    font-size: 1.3rem;
-    font-weight: 600;
-    margin-top: 25px;
-    margin-bottom: 10px;
-    border-left: 4px solid #ff8c42;
-    padding-left: 8px;
+	text-align: left;
+	font-size: 1.3rem;
+	font-weight: 600;
+	margin-top: 25px;
+	margin-bottom: 10px;
+	border-left: 4px solid #ff8c42;
+	padding-left: 8px;
 }
 
 /* 材料リスト */
 .material-list {
-    text-align: left;
-    padding-left: 20px;
-    line-height: 1.6;
+	text-align: left;
+	padding-left: 20px;
+	line-height: 1.6;
 }
 
 /* 作り方リスト */
 .steps-list {
-    text-align: left;
-    padding-left: 20px;
-    line-height: 1.6;
+	text-align: left;
+	padding-left: 20px;
+	line-height: 1.6;
 }
 
 /* 戻るボタン */
 .back-btn-area {
-    margin-top: 30px;
+	margin-top: 30px;
 }
 
 .back-btn {
-    display: inline-block;
-    padding: 10px 20px;
-    background: #ddd;
-    border-radius: 10px;
-    text-decoration: none;
-    color: #333;
-    font-weight: 600;
+	display: inline-block;
+	padding: 10px 20px;
+	background: #ddd;
+	border-radius: 10px;
+	text-decoration: none;
+	color: #333;
+	font-weight: 600;
 }
 
 /* スプラッシュ画面全体 */
 #splash {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    animation: fadeOut 2.5s ease forwards;
-    animation-delay: 2.0s;
-    /* 表示してから消えるまでの時間 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	z-index: 9999;
+	animation: fadeOut 2.5s ease forwards;
+	animation-delay: 2.0s;
+	/* 表示してから消えるまでの時間 */
 }
 
 /* アプリ名の文字 */
 .splash-title {
-    margin: 0;
-    font-size: 2.5rem;
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    opacity: 0;
-    animation: fadeIn 1.5s ease forwards;
-    background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    /* Safari対策 */
-    color: transparent;
-    /* 文字色を透明にする */
-    font-family: 'Zen Kaku Gothic New', sans-serif;
+	margin: 0;
+	font-size: 2.5rem;
+	font-weight: 700;
+	letter-spacing: 0.05em;
+	opacity: 0;
+	animation: fadeIn 1.5s ease forwards;
+	background-image: linear-gradient(-225deg, #20E2D7 0%, #F9FEA5 100%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	/* Safari対策 */
+	color: transparent;
+	/* 文字色を透明にする */
+	font-family: 'Zen Kaku Gothic New', sans-serif;
 
 }
 
 /* ふわっと表示 */
 @keyframes fadeIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.9);
-    }
+	0% {
+		opacity: 0;
+		transform: scale(0.9);
+	}
 
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
 }
 
 /* ふわっと消える */
 @keyframes fadeOut {
-    0% {
-        opacity: 1;
-    }
+	0% {
+		opacity: 1;
+	}
 
-    100% {
-        opacity: 0;
-        visibility: hidden;
-    }
+	100% {
+		opacity: 0;
+		visibility: hidden;
+	}
 }
 
 .recipe-title,
 .material-title,
 .section-title {
-    white-space: pre-wrap;
+	white-space: pre-wrap;
 }
 
 
 
 .recipe-image {
-    width: 400px;
-    height: 400px;
-    /* object-fit: cover; */
+	width: 400px;
+	height: 400px;
+	/* object-fit: cover; */
 }
 
 @media screen and (max-width: 640px) {
-    .recipe-image {
-        width: 90vw;
-        height: 90vw;
-    }
+	.recipe-image {
+		width: 90vw;
+		height: 90vw;
+	}
 }
 
 /* アイコン画像自体のサイズ調整 */
 .recipe-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    /* 画像を歪ませない */
-    margin-bottom: 4px;
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+	/* 画像を歪ませない */
+	margin-bottom: 4px;
 }
 
 /* アイコンリスト全体の並び */
 .recipe-iconList {
-    display: flex;
-    justify-content: center;
-    /* 中央に寄せる */
-    flex-wrap: wrap;
-    /* 数が多い時に折り返す */
-    gap: 10px;
-    /* アイコン同士の間隔 */
-    margin-top: 10px;
+	display: flex;
+	justify-content: center;
+	/* 中央に寄せる */
+	flex-wrap: wrap;
+	/* 数が多い時に折り返す */
+	gap: 10px;
+	/* アイコン同士の間隔 */
+	margin-top: 10px;
 }
 
 .detailRecipe-iconList {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    border-radius: 16px;
-    display: flex;
-    gap: 14px;
-    justify-content: center
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 16px;
+	display: flex;
+	gap: 14px;
+	justify-content: center
 }
 
 .material-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    padding: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px;
+	justify-content: center;
+	padding: 10px;
 }
 
 /*  親コンテナ：高さを広げ、はみ出しを確実にスクロールさせる */
 .materialSwiper {
-    height: 100%;
-    overflow-x: scroll !important; /* autoではなくscrollで強制 */
-    overflow-y: hidden !important;
-    display: block !important;
-    position: relative !important;
-    z-index: 10 !important;        /* レシピ画像より前面に出す */
-    -webkit-overflow-scrolling: touch;
+	height: 100%;
+	overflow-x: scroll !important;
+	/* autoではなくscrollで強制 */
+	overflow-y: hidden !important;
+	display: block !important;
+	position: relative !important;
+	z-index: 10 !important;
+	/* レシピ画像より前面に出す */
+	-webkit-overflow-scrolling: touch;
 }
 
 /* スライドの中身が縦に伸びないようにする */
@@ -277,65 +279,71 @@ body {
 
 /*  各アイコンスライド：高さを固定し、下のマージンを消去 */
 .materialSwiper .swiper-slide {
-    width: 75px !important;
-    margin-bottom: 0 !important;    /* 画像のオレンジ色(Margin)を消す */
-    padding-bottom: 0 !important;   /* 紫色の斜線部分(Padding)を消す */
-    display: flex !important;
-    flex-direction: column;
-    align-items: center;
-    flex-shrink: 0;
+	width: 75px !important;
+	margin-bottom: 0 !important;
+	/* 画像のオレンジ色(Margin)を消す */
+	padding-bottom: 0 !important;
+	/* 紫色の斜線部分(Padding)を消す */
+	display: flex !important;
+	flex-direction: column;
+	align-items: center;
+	flex-shrink: 0;
 }
 
 /*  Swiper内部の横長ラッパー：高さを親より低くして、突き抜けを防止 */
 .materialSwiper .swiper-wrapper {
-    display: flex !important;
-    align-items: flex-start !important; /* 上寄せにする */
-    width: max-content !important;
+	display: flex !important;
+	align-items: flex-start !important;
+	/* 上寄せにする */
+	width: max-content !important;
 }
 
 /* スクロールバーが消されるのを防ぐ */
 .materialSwiper::-webkit-scrollbar {
-    height: 12px !important;
-    display: block !important;
-    background-color: #f0f0f0 !important;
+	height: 12px !important;
+	display: block !important;
+	background-color: #f0f0f0 !important;
 }
 
 .materialSwiper::-webkit-scrollbar-thumb {
-    background-color: #ff9800;  /* 目立つオレンジ */
-    border-radius: 10px;
-    border: 2px solid #fff;     /* 白い縁取りで埋もれ防止 */
+	background-color: #ff9800;
+	/* 目立つオレンジ */
+	border-radius: 10px;
+	border: 2px solid #fff;
+	/* 白い縁取りで埋もれ防止 */
 }
 
 .materialSwiper::-webkit-scrollbar-track {
-    background: #f0f0f0;        /* 背景を薄いグレーに */
+	background: #f0f0f0;
+	/* 背景を薄いグレーに */
 }
 
 .icon-checkbox-label {
-    margin: 5px;
+	margin: 5px;
 }
 
 /* カテゴリーアイコンのスタイル */
 .category-icon {
-    width: 40px;
-    height: 40px;
-    object-fit: contain;
-    border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	object-fit: contain;
+	border-radius: 50%;
 }
 
 .category-grid {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    gap: 4px;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	gap: 4px;
 }
 
 .cat-btn img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    object-fit: cover;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	object-fit: cover;
 }
 
 /* .cat-btn { */
@@ -355,45 +363,45 @@ body {
 
 
 .cat-label {
-    flex: 0 0 15%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
+	flex: 0 0 15%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	cursor: pointer;
 
 }
 
 /* ホバー時はさらに少し大きく */
 .cat-btn img:hover {
-    transform: scale(1.3);
-    border-radius: 50%;
+	transform: scale(1.3);
+	border-radius: 50%;
 }
 
 /* ラジオボタンは隠す */
 .cat-radio {
-    display: none;
+	display: none;
 }
 
 /* 選択された時のエフェクトを「外枠」ではなく「中の円」に合わせる */
 .cat-radio:checked+.cat-btn img {
-    filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.8));
-    border: 3px solid #ffa500;
-    /* 選択時のボーダーを内側に寄せる（白枠を見せないため） */
-    box-sizing: border-box;
-    border-radius: 50%;
+	filter: drop-shadow(0 0 8px rgba(255, 165, 0, 0.8));
+	border: 3px solid #ffa500;
+	/* 選択時のボーダーを内側に寄せる（白枠を見せないため） */
+	box-sizing: border-box;
+	border-radius: 50%;
 }
 
 /* カテゴリーアイコン（大分類）選択時の色の変化 */
 .cat-radio:checked+.cat-btn .category-icon {
-    filter: brightness(0.2);
-    /* 大分類アイコンも選択時に濃くする場合 */
-    opacity: 1;
-    border-radius: 50%;
+	filter: brightness(0.2);
+	/* 大分類アイコンも選択時に濃くする場合 */
+	opacity: 1;
+	border-radius: 50%;
 }
 
 /* ラジオボタン自体は隠す */
 .mid-cat-radio {
-    display: none;
+	display: none;
 }
 
 .mid-cat-label {
@@ -403,139 +411,139 @@ body {
 
 /* ボタンの土台（丸） */
 .mid-cat-btn {
-    display: flex;
-    width: 80%;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    background: #f0f0f0;
-    transition: all 0.3s ease;
-    cursor: pointer;
+	display: flex;
+	width: 80%;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	background: #f0f0f0;
+	transition: all 0.3s ease;
+	cursor: pointer;
 }
 
 /* アイコン画像 */
 .mid-cat-btn img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    border-radius: 50%;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	border-radius: 50%;
 }
 
 /* ボタン下のテキスト（肉/魚など） */
 .mid-cat-btn small {
-    font-size: 0.6rem;
-    color: #666;
-    margin-top: 2px;
+	font-size: 0.6rem;
+	color: #666;
+	margin-top: 2px;
 }
 
 /* 選択された時の色変更（パスタのオレンジに合わせる場合） */
 .mid-cat-radio:checked+.mid-cat-btn {
-    background: #fff3e0;
-    border-color: #ff9800;
-    box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
+	background: #fff3e0;
+	border-color: #ff9800;
+	box-shadow: 0 0 8px rgba(255, 152, 0, 0.4);
 }
 
 .mid-cat-radio:checked+.mid-cat-btn small {
-    color: #ff9800;
-    font-weight: bold;
+	color: #ff9800;
+	font-weight: bold;
 }
 
 /* 材料アイコンと名前を縦に並べる */
 .icon-checkbox-label {
-    text-align: center;
-    cursor: pointer;
+	text-align: center;
+	cursor: pointer;
 }
 
 /*  アイコンの中身：余計な余白を徹底的に排除 */
 .icon-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 0 !important;
-    margin: 0 !important;
-    height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 0 !important;
+	margin: 0 !important;
+	height: 100%;
 }
 
 /*  名前：下のマージンを0にする */
 .icon-name {
-    font-size: 0.6rem;
-    line-height: 1.2;
-    margin-top: 4px;
-    margin-bottom: 0 !important;
+	font-size: 0.6rem;
+	line-height: 1.2;
+	margin-top: 4px;
+	margin-bottom: 0 !important;
 }
 
 /* 名前（ラベル）も選択時に太くする */
 .hidden-checkbox:checked+.icon-content .icon-name {
-    color: #000;
-    font-weight: bold;
+	color: #000;
+	font-weight: bold;
 }
 
 /* 選択された（チェックが入った）状態のアイコン */
 .hidden-checkbox:checked+.icon-content .selectable-icon {
-    /* 1. モノクロにする 2. コントラストを最大にして線をハッキリさせる */
-    filter: grayscale(100%) contrast(200%) brightness(0.5);
-    opacity: 1;
-    transform: scale(1.1);
+	/* 1. モノクロにする 2. コントラストを最大にして線をハッキリさせる */
+	filter: grayscale(100%) contrast(200%) brightness(0.5);
+	opacity: 1;
+	transform: scale(1.1);
 }
 
 /* 未選択の状態：グレーで薄い */
 .selectable-icon {
-    width: 50px;
-    height: 50px;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(0.8);
-    /* 少し暗めのグレー */
-    opacity: 0.3;
-    /* さらに薄くして、未選択感を強調 */
-    transition: all 0.3s ease;
-    cursor: pointer;
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+	filter: grayscale(100%) brightness(0.8);
+	/* 少し暗めのグレー */
+	opacity: 0.3;
+	/* さらに薄くして、未選択感を強調 */
+	transition: all 0.3s ease;
+	cursor: pointer;
 }
 
 .video-container {
-    width: 100%;
-    height: 100%;
-    /* margin: 0 auto; */
-    z-index: 20;
-    position: fixed;
+	width: 100%;
+	height: 100%;
+	/* margin: 0 auto; */
+	z-index: 20;
+	position: fixed;
 }
 
 video {
-    width: 100%;
-    height: 100%;
-    border-radius: 12px;
-    box-shadow: 0;
+	width: 100%;
+	height: 100%;
+	border-radius: 12px;
+	box-shadow: 0;
 }
 
 .modal {
-    display: none;
-    /* 最初は非表示 */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    justify-content: center;
-    align-items: center;
+	display: none;
+	/* 最初は非表示 */
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.6);
+	justify-content: center;
+	align-items: center;
 
 }
 
 .modal-content {
-    background: #fff;
-    padding: 20px;
-    width: 90%;
-    max-width: 600px;
-    border-radius: 10px;
-    position: relative;
+	background: #fff;
+	padding: 20px;
+	width: 90%;
+	max-width: 600px;
+	border-radius: 10px;
+	position: relative;
 }
 
 .close {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 99999;
+	position: absolute;
+	top: 10px;
+	right: 15px;
+	font-size: 24px;
+	cursor: pointer;
+	z-index: 99999;
 }
 
 /* .tutorial-button {
@@ -551,34 +559,118 @@ video {
 } */
 
 .tutorial-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 12px 24px;
-    font-size: 18px;
-    background-color: #ff9800;
-    color: white;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    z-index: 18;
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	padding: 12px 24px;
+	font-size: 18px;
+	background-color: #ff9800;
+	color: white;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	z-index: 18;
 }
-.search-navigation{
-    /* position: fixed;
+
+.search-navigation {
+	/* position: fixed;
     z-index: 2; */
-    grid-column: 1/2;
-    grid-row:1/2;
-    padding:10px 10px 0 ;
+	grid-column: 1/2;
+	grid-row: 1/2;
+	padding: 10px 10px 0;
 }
 
-.square{
-    display: grid;
-    grid-template-columns: 100%;
-    grid-template-rows: 34vh 66vh;
+.square {
+	display: grid;
+	grid-template-columns: 100%;
+	grid-template-rows: 34vh 66vh;
 }
 
-#swiper{
+#swiper {
 	height: 66vh;
-    grid-column: 1/2;
-    grid-row: 2/3;
+	grid-column: 1/2;
+	grid-row: 2/3;
+}
+
+/* --- デスクトップ(PC)向けの上書き設定 --- */
+@media screen and (min-width: 1024px) {
+
+	.square {
+		display: flex !important;
+		flex-direction: row !important;
+		align-items: center !important;
+		justify-content: center !important;
+		height: 86vh !important;
+		max-height: 880px;
+		width: 90vw !important;
+		max-width: 1150px !important;
+		margin: 20px auto !important;
+		padding: 25px !important;
+		background: #ffffff !important;
+		border-radius: 40px !important;
+		box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1) !important;
+		overflow: visible !important;
+	}
+
+	/* 左側メニュー：スクロールバーを消しつつ機能は維持 */
+	.search-navigation {
+		padding: 10px 10px 0;
+		flex: 0 0 450px !important;
+		height: 100% !important;
+		overflow-y: auto !important;
+		border-right: 1px solid #f0f0f0 !important;
+	}
+
+	/* 材料アイコンをタイル状に並べる */
+	.materialSwiper .swiper-wrapper {
+		width: 100% !important;
+		display: flex !important;
+		flex-wrap: wrap !important;
+		transform: none !important;
+		gap: 12px;
+	}
+
+	/* 右側レシピエリア */
+	#swiper {
+		flex: 1 !important;
+		height: 100% !important;
+		display: flex !important;
+		align-items: center !important;
+		justify-content: center !important;
+	}
+
+	/* レシピカード */
+	.recipe-card {
+		text-align: center;
+		width: 430px !important;
+		height: auto !important;
+		max-height: 800px;
+		background: white !important;
+		border-radius: 25px !important;
+		box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05) !important;
+		display: flex !important;
+		flex-direction: column !important;
+		overflow-y: auto;
+	}
+
+
+	.recipe-title {
+		font-size: 1.6rem;
+		font-weight: 700;
+	}
+
+	/* 使い方ボタン */
+	.tutorial-button {
+		position: fixed;
+		bottom: 50px;
+		right: 50px;
+		padding: 12px 24px;
+		font-size: 18px;
+		background-color: #ff9800;
+		color: white;
+		border: none;
+		border-radius: 8px;
+		cursor: pointer;
+		z-index: 18;
+	}
 }

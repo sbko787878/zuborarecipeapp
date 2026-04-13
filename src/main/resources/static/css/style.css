@@ -802,14 +802,14 @@ body {
 	    .detail-container .recipe-title {
 	        grid-column: 2 / 3;
 	        grid-row: 1 / 2;
-	        font-size: 2.5rem !important;
+	        font-size: 1.5rem !important;
 	        margin: 0 0 20px 0 !important;
 	    }
 
 	    .detail-container .material-title {
 	        grid-column: 2 / 3;
 	        grid-row: 2 / 3;
-	        font-size: 1.5rem !important;
+	        font-size: 1.2rem !important;
 	        margin-bottom: 20px !important;
 	        background: #fff9f0; /* 材料部分を少し強調 */
 	        padding: 15px !important;
@@ -820,7 +820,7 @@ body {
 	    .detail-container .section-title {
 	        grid-column: 2 / 3;
 	        grid-row: 3 / 4;
-	        font-size: 1.4rem !important;
+	        font-size: 1.1rem !important;
 	        overflow-y: auto !important; /* 作り方が長い場合はここだけスクロール */
 	        padding-right: 10px;
 	        white-space: pre-wrap !important; /* 改行を反映 */
@@ -831,6 +831,6 @@ body {
 	        grid-row: 4 / 5;
 	        margin-top: 20px !important;
 	        text-align: right !important; /* ボタンは右下に配置 */
-			font-size: 2.0rem !important;
+			font-size: 1.2rem !important;
 	    }
 }

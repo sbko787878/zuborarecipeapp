@@ -676,4 +676,49 @@ video {
 		cursor: pointer;
 		z-index: 18;
 	}
+
+	/* モーダル：白い枠自体を動画のサイズにギュッと縮める */
+	.modal-content {
+		width: auto !important;
+		/* 幅を中身（動画）に合わせる */
+		height: 85vh !important;
+		/* 高さを画面の85%にする */
+		aspect-ratio: 9 / 16;
+		/* ★縦長動画の比率を強制指定 */
+		padding: 0 !important;
+		/* 余計な余白をゼロに */
+		background: none !important;
+		/* 白い背景を消すとボタンが際立つ */
+		box-shadow: none !important;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		/* ボタンの基準点 */
+	}
+
+	.close {
+		position: absolute;
+		top: 10px;
+		/* 動画の内側上部 */
+		right: 10px;
+		/* 動画の内側右側 */
+		background: rgba(0, 0, 0, 0.5);
+		/* 半透明の黒丸 */
+		color: white !important;
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		font-size: 24px;
+		z-index: 10001;
+		/* 動画より手前 */
+		transition: 0.3s;
+	}
+
+	.close:hover {
+		background: rgba(255, 0, 0, 0.7);
+		/* ホバーで赤くして目立たせる */
+	}
 }

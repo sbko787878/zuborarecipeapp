@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
 	margin: 0;
 	padding: 0;
@@ -572,27 +574,29 @@ video {
 	z-index: 18;
 }
 
-.search-navigation {
-	/* position: fixed;
+@media screen and (max-width: 1023px) {
+	.search-navigation {
+		/* position: fixed;
     z-index: 2; */
-	grid-column: 1/2;
-	grid-row: 1/2;
-	padding: 10px 10px 0;
+		grid-column: 1/2;
+		grid-row: 1/2;
+		padding: 10px 10px 0;
+	}
+
+	.square {
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 34vh 66vh;
+	}
+
+	#swiper {
+		height: 66vh;
+		grid-column: 1/2;
+		grid-row: 2/3;
+	}
 }
 
-.square {
-	display: grid;
-	grid-template-columns: 100%;
-	grid-template-rows: 34vh 66vh;
-}
-
-#swiper {
-	height: 66vh;
-	grid-column: 1/2;
-	grid-row: 2/3;
-}
-
-/* --- デスクトップ(PC)向けの上書き設定 --- */
+/* --- Desktop Layout Settings --- */
 @media screen and (min-width: 1024px) {
 
 	.square {
@@ -612,7 +616,7 @@ video {
 		overflow: visible !important;
 	}
 
-	/* 左側メニュー：スクロールバーを消しつつ機能は維持 */
+	/* Left Navigation Menu */
 	.search-navigation {
 		padding: 10px 10px 0;
 		flex: 0 0 450px !important;
@@ -621,7 +625,7 @@ video {
 		border-right: 1px solid #f0f0f0 !important;
 	}
 
-	/* 材料アイコンをタイル状に並べる */
+	/* Material Icons Grid */
 	.materialSwiper .swiper-wrapper {
 		width: 100% !important;
 		display: flex !important;
@@ -630,7 +634,7 @@ video {
 		gap: 12px;
 	}
 
-	/* 右側レシピエリア */
+	/* Right Recipe Area */
 	#swiper {
 		flex: 1 !important;
 		height: 100% !important;
@@ -639,7 +643,7 @@ video {
 		justify-content: center !important;
 	}
 
-	/* レシピカード */
+	/* Recipe Card */
 	.recipe-card {
 		text-align: center;
 		width: 430px !important;
@@ -653,13 +657,12 @@ video {
 		overflow-y: auto;
 	}
 
-
 	.recipe-title {
 		font-size: 1.6rem;
 		font-weight: 700;
 	}
 
-	/* 使い方ボタン */
+	/* Tutorial Button */
 	.tutorial-button {
 		position: fixed;
 		bottom: 50px;

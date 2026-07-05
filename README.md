@@ -32,7 +32,7 @@
 </table>
 
 ## 🚀 サービスURL
-**[[https://main.d1nwmbabdp98g4.amplifyapp.com/index.html]]((https://main.d1nwmbabdp98g4.amplifyapp.com/index.html))** ※本アプリはモバイル利用に特化したUI/UXを優先して設計しております。
+**[ズボラレシピ（アプリを起動する）](https://main.d1nwmbabdp98g4.amplifyapp.com/index.html)** ※本アプリはモバイル利用に特化したUI/UXを優先して設計しております。
 PCブラウザでご覧いただく際は、お手数ですがブラウザの「開発者モード（F12キー）」にてスマートフォン表示に切り替えていただけますと、本来のデザインでご確認いただけます。
 (参考：Google Chromeの場合、F12キーを押して Ctrl+Shift+M でデバイス切り替えが可能です)
 
